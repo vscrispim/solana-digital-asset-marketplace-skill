@@ -3,7 +3,7 @@ from pathlib import Path
 import re, sys
 root = Path(__file__).resolve().parents[1]
 required = [
-    'README.md','LICENSE','install.sh','skill/SKILL.md',
+    'README.md','LICENSE','install.sh','.gitignore','docs/SUBMISSION.md','docs/PROJECT_STRUCTURE.md','skill/SKILL.md',
     'skill/marketplace-wedge.md','skill/web2-5-ux.md','skill/license-models.md',
     'skill/protected-delivery.md','skill/solana-receipts.md','skill/creator-onboarding.md',
     'skill/ip-risk-checklist.md','skill/metrics-and-funnel.md','skill/funding-readiness.md','skill/security-threat-model.md','references/site-ux-patterns.md','rules/cybersecurity-baseline.md',
