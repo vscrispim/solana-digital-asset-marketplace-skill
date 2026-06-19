@@ -58,7 +58,8 @@ It is especially useful for categories like:
 - Templates for creator intake, asset license brief, risk register, demo script, and investor one-pager.
 - Commands for marketplace flow, creator intake, license brief, and funding demo preparation.
 - Agents for marketplace product strategy, creator ops review, and Solana receipt architecture.
-- Rules for IP/licensing safety and no wallet-first UX by default.
+- Rules for IP/licensing safety, no wallet-first UX by default, and a cybersecurity baseline.
+- A concrete site/UX pattern reference using examples from Sketchfab, Gumroad, Fab/Unreal Marketplace, BOOTH/Jinxxy, MyMiniFactory/Printables, ArtStation, CGTrader, and TurboSquid.
 - Validation script and install script.
 
 ## Quality / testing
@@ -82,7 +83,7 @@ Entry point: skill/SKILL.md
 
 ## Human design choices
 
-The skill deliberately avoids generic AI language and tells founders the uncomfortable but useful things:
+The skill deliberately avoids generic AI language and tells founders the uncomfortable but useful things, with concrete UX references and cybersecurity alerts throughout:
 
 - do the first version manually;
 - do not force wallet-first UX;

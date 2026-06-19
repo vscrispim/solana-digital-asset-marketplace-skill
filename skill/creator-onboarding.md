@@ -22,6 +22,13 @@ Ask creators for:
 - payout preference;
 - restricted uses.
 
+## Cybersecurity alerts
+
+- Treat uploaded ZIPs, scripts, Blender add-ons, plugins, and executable-looking files as untrusted.
+- Verify payout changes through a second channel; creator account takeover often shows up as a “new wallet/bank account” request.
+- Keep an audit log when creators replace files after publication.
+- Do not run creator-provided scripts during preview generation.
+
 ## Manual review
 
 Before publishing:

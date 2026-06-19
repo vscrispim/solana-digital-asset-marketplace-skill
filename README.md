@@ -45,8 +45,10 @@ The skill routes an AI agent through focused workflows:
 - `ip-risk-checklist.md` — avoid obvious licensing and provenance mistakes.
 - `metrics-and-funnel.md` — measure the market instead of pretending a launch worked.
 - `funding-readiness.md` — prepare a demo, data room, and investor narrative.
+- `security-threat-model.md` — add practical cybersecurity controls for uploads, downloads, accounts, webhooks, and user-generated content.
+- `references/site-ux-patterns.md` — concrete UX examples inspired by Sketchfab, Gumroad, Fab, BOOTH/Jinxxy, MyMiniFactory, Printables, ArtStation, CGTrader, and TurboSquid.
 
-It also includes templates, commands, rules, and lightweight agents for product, creator ops, and receipt architecture.
+It also includes templates, commands, rules, UX references, cybersecurity alerts, and lightweight agents for product, creator ops, and receipt architecture.
 
 ## Best use cases
 
@@ -98,6 +100,8 @@ Then it should produce a practical plan: creator list, intake, license tiers, bu
 ## Safety notes
 
 This skill does not provide legal advice. It helps founders organize licensing, IP, and marketplace risk questions so counsel and operators can review them properly.
+
+Cybersecurity is treated as part of product quality: uploads are untrusted, paid files belong in private storage, signed URLs must be generated server-side, checkout webhooks need verification, and comments/bios/descriptions must be sanitized.
 
 It also does not recommend forcing wallet-first flows. For early marketplaces, wallets should be optional unless the target audience already expects them.
 

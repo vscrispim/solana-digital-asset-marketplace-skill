@@ -27,6 +27,13 @@ Do not store private buyer data or full license documents on-chain.
 5. Show a simple receipt page.
 6. Add explorer link only as supporting evidence.
 
+## Cybersecurity alerts
+
+- A Solana transaction is not proof that the buyer should receive a file unless your backend maps it to a valid order/license.
+- Do not put personal buyer data, private URLs, emails, or full license documents on-chain.
+- Canonicalize the license JSON before hashing, otherwise two equivalent licenses may produce different hashes.
+- Protect webhook and receipt-generation endpoints against replay and fake confirmations.
+
 ## Wallet approach
 
 Default buyer path should not require wallet.

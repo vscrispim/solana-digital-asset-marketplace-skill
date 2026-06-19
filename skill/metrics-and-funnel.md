@@ -26,6 +26,17 @@ Define metrics that prove marketplace demand instead of vanity launch activity.
 - repeat visits;
 - support requests.
 
+## Security metrics
+
+- failed login attempts;
+- suspicious download spikes;
+- expired signed URL requests;
+- upload rejection count;
+- malware scan failures;
+- admin actions per asset;
+- payout change requests;
+- webhook verification failures.
+
 ## Trust metrics
 
 - creator response time;

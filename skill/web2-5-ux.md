@@ -4,6 +4,16 @@
 
 Design a buying experience that feels normal while still letting Solana add trust in the background.
 
+## Concrete UX references
+
+Use familiar patterns from real marketplaces:
+
+- **Sketchfab:** 3D viewer as the hero of the asset page.
+- **Gumroad:** simple creator-first checkout and pricing.
+- **Fab / Unreal Marketplace:** compatibility, engine/version, and support expectations.
+- **BOOTH / Jinxxy:** avatar-drop culture and creator-led storefronts.
+- **MyMiniFactory / Printables:** printability notes and personal/commercial license clarity.
+
 ## Core buyer flow
 
 1. Browse curated assets.
@@ -36,6 +46,13 @@ Show wallet features only when they add value:
 - collector identity for limited drops.
 
 Do not block normal checkout behind wallet connect in the first version unless the audience already expects it.
+
+## Cybersecurity alerts
+
+- Do not show protected download URLs until the server verifies payment/order/license ownership.
+- Treat comments, creator bios, and asset descriptions as untrusted content that must be sanitized before rendering.
+- Do not ask users to paste seed phrases, private keys, or wallet recovery data. Ever.
+- If wallet connect exists, make the signing message human-readable and narrow in scope.
 
 ## UX anti-patterns
 

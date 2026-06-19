@@ -57,6 +57,8 @@ Load only the module needed for the user’s current decision:
 - **IP and licensing risk:** `ip-risk-checklist.md`
 - **Metrics and validation:** `metrics-and-funnel.md`
 - **Funding/demo readiness:** `funding-readiness.md`
+- **Security threat model:** `security-threat-model.md`
+- **Site and UX examples:** `../references/site-ux-patterns.md`
 
 ## Default workflow
 
@@ -69,8 +71,9 @@ When a founder asks for help, follow this order:
 5. **Define protected delivery.** Signed URLs, file versions, access logs, buyer account, update policy.
 6. **Create creator ops.** Intake form, asset checklist, ownership declaration, pricing, support expectations.
 7. **Write the risk register.** IP, licensing, custody, payments, refunds, disputes, data privacy.
-8. **Set metrics.** Creator replies, assets approved, page views, checkout starts, completed purchases, downloads, support tickets.
-9. **Prepare the demo.** Show one asset journey end-to-end, not a giant roadmap.
+8. **Add security controls.** Threat-model uploads, downloads, accounts, checkout webhooks, user-generated content, and admin actions before real files or payments go live.
+9. **Set metrics.** Creator replies, assets approved, page views, checkout starts, completed purchases, downloads, support tickets.
+10. **Prepare the demo.** Show one asset journey end-to-end, not a giant roadmap.
 
 ## Opinionated defaults
 
@@ -82,6 +85,7 @@ When a founder asks for help, follow this order:
 - Keep licenses human-readable.
 - Treat comments/reviews as support and trust signals, not social noise.
 - Prioritize creator trust over marketplace breadth.
+- Treat every upload, comment, creator profile, webhook, and download request as untrusted until verified server-side.
 
 ## Output standards
 
@@ -115,4 +119,6 @@ Before finalizing an answer, check:
 - [ ] Did we avoid legal advice and route legal questions to counsel?
 - [ ] Did we choose a narrow initial wedge?
 - [ ] Did we define what should remain manual in the first version?
+- [ ] Did we include cybersecurity alerts for uploads, protected delivery, account security, and checkout/webhooks?
+- [ ] Did we include at least one concrete site/UX page flow?
 - [ ] Did we include measurable next steps?

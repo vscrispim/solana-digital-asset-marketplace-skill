@@ -14,6 +14,14 @@ Design file delivery that is practical, not magical. Solana can prove a receipt,
 - Version files clearly.
 - Let operators revoke or reissue access manually.
 
+## Cybersecurity alerts
+
+- Never expose private bucket paths or storage service keys to the browser.
+- Signed URLs should be short-lived and generated only after server-side authorization.
+- Log download events so suspicious sharing can be investigated.
+- Keep public previews separate from paid originals.
+- Scan uploaded archives before publishing; a marketplace can accidentally distribute malware if creator files are trusted blindly.
+
 ## What not to claim
 
 Do not claim protected delivery “stops piracy.” It reduces casual leakage, improves legitimate buyer access, and creates a clean purchase record.

@@ -4,6 +4,18 @@
 
 Catch obvious intellectual-property and licensing risks before a marketplace publishes an asset.
 
+## Concrete site/UX checks
+
+On the asset page, make ownership and rights visible in plain language:
+
+- “Created by” creator identity;
+- included file formats;
+- license tier;
+- allowed commercial use;
+- redistribution rule;
+- version/update history;
+- report/takedown path.
+
 ## Fast checks
 
 - Does the creator claim original authorship?
@@ -28,6 +40,12 @@ Uses third-party components with licenses that need review, or has ambiguous com
 ### High
 
 Fan art, ripped assets, brand references, celebrity likeness, unclear ownership, or creator cannot explain provenance.
+
+## Cybersecurity alerts
+
+- A takedown form can be abused for spam or harassment; rate-limit it and log submissions.
+- Do not publish private creator documents used for verification. Store them securely and restrict admin access.
+- Beware impersonation: fake creator pages can copy portfolios and trick buyers.
 
 ## Counsel handoff
 

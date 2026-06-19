@@ -4,6 +4,18 @@
 
 Prepare a founder to show a Web2.5 marketplace as a serious company, not a speculative crypto demo.
 
+## Concrete UX demo references
+
+A strong demo can borrow the buyer mental model from:
+
+- Sketchfab for rich 3D preview;
+- Gumroad for simple checkout;
+- Fab/Unreal Marketplace for professional asset metadata;
+- MyMiniFactory/Printables for printable asset license clarity;
+- Jinxxy/BOOTH for avatar/community drops.
+
+Do not just say “marketplace.” Show a real flow: `Home → Explore → Asset Detail → License Tier → Checkout → Receipt → Protected Download → Update/Support`.
+
 ## Demo structure
 
 A good 60–90 second demo shows:
@@ -29,6 +41,16 @@ A good 60–90 second demo shows:
 - revenue model;
 - roadmap;
 - funding use.
+
+## Cybersecurity alerts for the demo
+
+Mention security like an operator, not like a buzzword:
+
+- originals are private, previews are public;
+- download links are signed and expire;
+- creator uploads are reviewed/scanned;
+- webhook/payment confirmation happens server-side;
+- Solana stores proof, not private buyer data.
 
 ## What investors should hear
 
