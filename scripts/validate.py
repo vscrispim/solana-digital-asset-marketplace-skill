@@ -13,7 +13,7 @@ required = [
     'commands/generate-license-brief.md','commands/prepare-funding-demo.md',
     'agents/marketplace-product-strategist.md','agents/creator-ops-reviewer.md','agents/solana-receipt-architect.md',
     'rules/ip-and-licensing-safety.md','rules/no-wallet-first-ux.md',
-    'examples/threed-cc-marketplace.md'
+    'examples/threed-cc-marketplace.md','examples/hackathon-ticketing.md','examples/music-drop-membership.md'
 ]
 errors=[]
 for rel in required:
@@ -31,7 +31,7 @@ for needle in ['description:', 'name:', 'Routing', 'Verification checklist', 'Hu
     if needle not in skill:
         errors.append(f'SKILL.md missing {needle}')
 readme=(root/'README.md').read_text(encoding='utf-8')
-for needle in ['Why this belongs in Solana AI Kit','Web2 UX first','Quick start prompts','Safety notes']:
+for needle in ['Why this belongs in Solana AI Kit','Real utility first','Quick start prompts','Hackathon use cases','Safety notes']:
     if needle not in readme:
         errors.append(f'README missing {needle}')
 # internal references from SKILL routing

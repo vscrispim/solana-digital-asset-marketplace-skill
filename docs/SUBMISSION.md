@@ -2,11 +2,11 @@
 
 ## Project
 
-**Solana Digital Asset Marketplace Skill**
+**Solana Digital Media Marketplace Skill**
 
 ## Short description
 
-A practical Solana AI Kit skill for founders building Web2.5 marketplaces for digital assets: 3D models, avatar drops, STL files, game assets, design packs, and other creator-owned files that need clear licensing, protected delivery, creator onboarding, marketplace metrics, and Solana receipts without forcing wallet-first UX.
+A practical Solana AI Kit skill for founders building Web2.5 marketplaces and NFT utility products for digital media, creator assets, tickets, memberships, credentials, collectibles, real-world benefits, and 3D/game assets that need clear licensing, protected delivery, creator onboarding, marketplace metrics, and Solana receipts without forcing wallet-first UX.
 
 ## What problem does it solve?
 
@@ -31,7 +31,7 @@ The buyer gets a normal marketplace flow. The founder still gets a credible Sola
 
 ## Why it is novel
 
-Most marketplace guidance is either generic startup advice or crypto-first NFT framing. This skill focuses on the middle path: Web2.5 digital asset commerce where files, licenses, creators, and protected delivery matter before tokens or speculation.
+Most marketplace guidance is either generic startup advice or crypto-first NFT framing. This skill focuses on the middle path: real media, access, tickets, credentials, creator benefits, protected delivery, and Solana proof before speculation.
 
 It is especially useful for categories like:
 
@@ -94,6 +94,11 @@ The skill deliberately avoids generic AI language and tells founders the uncomfo
 
 ## Suggested submission answer
 
-I built a new Solana AI Kit skill for founders designing Web2.5 digital asset marketplaces. It helps agents route through practical marketplace decisions: niche selection, buyer UX, license tiers, protected delivery, creator onboarding, IP risk, metrics, funding demos, and minimal Solana receipt architecture.
+I built a new Solana AI Kit skill for founders designing Web2.5 media, NFT utility, and digital asset marketplaces. It helps agents route through practical marketplace decisions: niche selection, buyer UX, license tiers, protected delivery, creator onboarding, IP risk, metrics, funding demos, and minimal Solana receipt architecture.
 
 The core idea is simple: buyers should get a familiar marketplace experience, while Solana acts as a proof layer for license/receipt hashes, provenance, and future creator settlement. The skill is written for real founder use, not as a toy demo, and includes modules, templates, commands, agents, safety rules, install script, and a validation script.
+
+
+## Hackathon angle
+
+The skill also encourages hackathon teams to use agents to turn a broad NFT idea into a complete real-world demo: landing, claim/buy, access or receipt, real-world benefit, verification, admin view, security checks, and metrics.

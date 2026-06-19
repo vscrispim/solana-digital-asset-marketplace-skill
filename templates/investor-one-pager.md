@@ -2,32 +2,34 @@
 
 ## One-liner
 
-A Web2.5 marketplace for digital assets where buyers get normal checkout and creators get clearer licensing, protected delivery, and Solana-backed receipts.
+A Web2.5 marketplace or utility platform where users buy, claim, or verify digital media, creator benefits, tickets, credentials, memberships, or assets with normal UX and optional Solana proof.
 
 ## Problem
 
-Digital asset commerce is fragmented across generic marketplaces, DMs, Gumroad links, and unclear license PDFs.
+Digital media, NFT utility, and creator commerce are fragmented across generic marketplaces, DMs, link-in-bio tools, ticketing apps, gated communities, and unclear license/access flows.
+
+Large NFT marketplaces can shift focus quickly. That leaves room for focused platforms built around real use cases, not only speculation.
 
 ## Initial wedge
 
-[Choose one: VRChat/VTuber avatars, STL premium, indie game assets, archviz/product visualization]
+[Choose one: music/video drops, event tickets, attendance proof, education credentials, local coupons, creator memberships, 3D/avatar/STL/game assets]
 
 ## Product
 
-Curated asset pages, 3D previews, license tiers, protected download, receipt/proof layer.
+Curated drop/detail pages, media previews, access/license/ticket tiers, protected delivery or redemption, and receipt/pass/proof layer.
 
 ## Why Solana
 
-Low-cost proof layer for receipts, license hashes, creator history, and future settlement/royalty flows.
+Low-cost proof layer for receipts, access passes, license hashes, credentials, attendance, creator history, and future settlement/royalty flows.
 
 ## Go-to-market
 
-Concierge onboarding of creators, limited drops, community-led distribution, then controlled self-service.
+Start with a concierge pilot: one community, creator, venue, school, brand, or event. Prove a real journey before building a broad marketplace.
 
 ## Metrics
 
-Creators contacted, creators onboarded, assets live, asset views, checkout starts, purchases/tests, downloads.
+Partners/creators contacted, pilots launched, claims/purchases, verified redemptions, protected access events, repeat use, support tickets, conversion rate.
 
 ## Ask
 
-[Funding, grant, accelerator, partners, creators]
+[Funding, grant, accelerator, partners, creators, venues, schools, communities]
