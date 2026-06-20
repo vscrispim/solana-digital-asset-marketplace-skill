@@ -58,6 +58,9 @@ Load only the module needed for the user’s current decision:
 - **Metrics and validation:** `metrics-and-funnel.md`
 - **Funding/demo readiness:** `funding-readiness.md`
 - **Security threat model:** `security-threat-model.md`
+- **Seeded React marketplace UI:** `../docs/REACT_SEEDED_COMPONENTS.md` and `../templates/react-marketplace-seeds.ts`
+- **Supply-chain security/quarantine:** `../docs/SUPPLY_CHAIN_SECURITY.md`, `../scripts/npm_supply_chain_guard.py`, `../templates/quarantine-fallback.ts`, and `../templates/maintenance-page.html`
+- **Project/storytelling narrative:** `../docs/STORYTELLING.md`
 - **Site and UX examples:** `../references/site-ux-patterns.md`
 
 ## Default workflow
@@ -72,8 +75,10 @@ When a founder asks for help, follow this order:
 6. **Create creator/partner ops.** Intake form, asset/media/event checklist, ownership declaration, access rules, pricing, redemption rules, support expectations.
 7. **Write the risk register.** IP, licensing, custody, payments, refunds, disputes, data privacy.
 8. **Add security controls.** Threat-model uploads, downloads, accounts, checkout webhooks, user-generated content, and admin actions before real files or payments go live.
-9. **Set metrics.** Creator replies, assets approved, page views, checkout starts, completed purchases, downloads, support tickets.
-10. **Prepare the demo.** Show one user journey end-to-end: landing, claim/buy, access/receipt, real-world benefit, verification, and admin view.
+9. **Run supply-chain guardrails before npm installs/builds.** For marketplace demos, scan package manifests and lockfiles, then quarantine checkout/download/upload functions if medium/high findings appear.
+10. **Pick or adapt a seed.** Use compact marketplace seeds when the user needs reusable React output, platform variations, or lower-token versioning.
+11. **Set metrics.** Creator replies, assets approved, page views, checkout starts, completed purchases, downloads, support tickets.
+11. **Prepare the demo.** Show one user journey end-to-end: landing, claim/buy, access/receipt, real-world benefit, verification, and admin view.
 
 ## Opinionated defaults
 
@@ -99,7 +104,7 @@ A good answer from this skill should include:
 - manual operations for the first 10 creators;
 - risk and counsel handoff notes;
 - 3–5 concrete next actions;
-- at least one template or checklist when useful.
+- at least one template, checklist, or compact seed diff when useful.
 
 ## Human tone rule
 
@@ -123,3 +128,5 @@ Before finalizing an answer, check:
 - [ ] Did we include cybersecurity alerts for uploads, protected delivery, account security, and checkout/webhooks?
 - [ ] Did we include at least one concrete site/UX page flow?
 - [ ] Did we include measurable next steps?
+- [ ] If reusable UI is requested, did we adapt a seed instead of regenerating repetitive components?
+- [ ] If npm dependencies or build scripts are involved, did we run or recommend the supply-chain guard and quarantine risky functions on findings?

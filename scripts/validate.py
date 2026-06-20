@@ -8,7 +8,9 @@ required = [
     'skill/protected-delivery.md','skill/solana-receipts.md','skill/creator-onboarding.md',
     'skill/ip-risk-checklist.md','skill/metrics-and-funnel.md','skill/funding-readiness.md','skill/security-threat-model.md','references/site-ux-patterns.md','rules/cybersecurity-baseline.md',
     'templates/creator-intake.md','templates/asset-license-brief.md','templates/marketplace-risk-register.md',
-    'templates/demo-script.md','templates/investor-one-pager.md',
+    'templates/demo-script.md','templates/investor-one-pager.md','templates/react-marketplace-seeds.ts',
+    'components/SeededMarketplacePage.tsx','docs/REACT_SEEDED_COMPONENTS.md','docs/STORYTELLING.md',
+    'docs/SUPPLY_CHAIN_SECURITY.md','scripts/npm_supply_chain_guard.py','templates/quarantine-fallback.ts','templates/maintenance-page.html',
     'commands/design-marketplace-flow.md','commands/generate-creator-intake.md',
     'commands/generate-license-brief.md','commands/prepare-funding-demo.md',
     'agents/marketplace-product-strategist.md','agents/creator-ops-reviewer.md','agents/solana-receipt-architect.md',
@@ -34,7 +36,7 @@ readme=(root/'README.md').read_text(encoding='utf-8')
 for needle in ['Why this belongs in Solana AI Kit','Real utility first','Quick start prompts','Hackathon use cases','Safety notes']:
     if needle not in readme:
         errors.append(f'README missing {needle}')
-# internal references from SKILL routing
+
 for m in re.findall(r'`([^`]+\.md)`', skill):
     if not (root/'skill'/m).exists() and not (root/m).exists():
         errors.append(f'SKILL references missing file: {m}')

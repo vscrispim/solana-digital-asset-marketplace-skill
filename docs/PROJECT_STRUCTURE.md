@@ -19,7 +19,9 @@ This repository follows the Solana AI Kit skill shape while keeping bounty/suppo
 │   ├── metrics-and-funnel.md
 │   ├── funding-readiness.md
 │   └── security-threat-model.md
-├── templates/                    # Copyable founder/operator templates
+├── templates/                    # Templates, seed data, quarantine fallback, maintenance page
+├── components/                   # React/Tailwind marketplace components rendered from seeds
+├── scripts/                      # Validation and supply-chain guard scripts
 ├── commands/                     # Workflow command specs
 ├── agents/                       # Specialist agent specs
 ├── rules/                        # Safety and product rules
@@ -32,6 +34,6 @@ This repository follows the Solana AI Kit skill shape while keeping bounty/suppo
 ## Why this layout
 
 - `skill/` stays focused on progressive loading.
-- `templates/`, `commands/`, `agents/`, and `rules/` mirror the structure requested by the bounty.
+- `templates/`, `components/`, `commands`, `agents`, and `rules/` mirror the structure requested by the bounty while adding versionable React demo artifacts.
 - `references/` keeps longer background material separate from the routing entry point.
-- `docs/` keeps bounty submission text and repository notes out of the root.
+- `docs/` keeps bounty submission text, storytelling, seeded React workflow notes, supply-chain security guidance, and repository notes out of the root.

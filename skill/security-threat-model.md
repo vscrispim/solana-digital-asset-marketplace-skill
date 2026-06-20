@@ -115,6 +115,29 @@ Minimum controls:
 - dependency scanning before launch;
 - Content Security Policy when possible.
 
+
+
+### 6. NPM supply-chain and build scripts
+
+Risks:
+
+- compromised packages run `preinstall`, `install`, `postinstall`, or `prepare` scripts;
+- dependency confusion or typo-squatting targets wallet, checkout, upload, or 3D viewer packages;
+- lockfiles point to insecure `http://`, git, file, or unreviewed URL dependencies;
+- malicious frontend dependency changes checkout, signed URL, wallet claim, or admin behavior;
+- secrets are exposed if install scripts run in an environment with credentials.
+
+Minimum controls:
+
+- run `scripts/npm_supply_chain_guard.py --audit --fail-on medium` before installing/building unknown npm projects;
+- prefer `npm ci --ignore-scripts` until lifecycle scripts are reviewed;
+- quarantine checkout, protected delivery, uploads, asset replacement, payout changes, and wallet claim functions on medium/high findings;
+- serve the maintenance page when users could be affected;
+- rotate secrets if suspicious install scripts may have run with access to credentials;
+- rebuild from a clean checkout after resolving the dependency issue.
+
+> **Cybersecurity alert:** A marketplace can be compromised before app code runs if npm lifecycle scripts execute malicious code. Review package scripts and lockfile changes before running installs in a credentialed environment.
+
 ## Red flag alerts to add to product docs
 
 Use these warnings inside generated plans:

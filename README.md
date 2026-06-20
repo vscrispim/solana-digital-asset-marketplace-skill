@@ -31,6 +31,8 @@ This skill helps an AI agent guide a founder through those decisions in a practi
 - [Install](#install)
 - [Quick start prompts](#quick-start-prompts)
 - [Example output direction](#example-output-direction)
+- [Seeded React marketplace system](#seeded-react-marketplace-system)
+- [Supply-chain security and quarantine](#supply-chain-security-and-quarantine)
 - [UX references](#ux-references)
 - [Cybersecurity baseline](#cybersecurity-baseline)
 - [Hackathon use cases](#hackathon-use-cases)
@@ -39,6 +41,7 @@ This skill helps an AI agent guide a founder through those decisions in a practi
 - [Safety notes](#safety-notes)
 
 ## Why this belongs in Solana AI Kit
+
 
 A lot of Solana founder work is not only writing programs. Builders also need to make hard product decisions:
 
@@ -108,14 +111,16 @@ Do **not** use it as:
 
 ### Supporting files
 
-- [`templates/`](templates/) — creator intake, license/access brief, risk register, demo script, investor one-pager.
+- [`templates/`](templates/) — creator intake, license/access brief, risk register, demo script, investor one-pager, seeded marketplace data, quarantine fallback, and maintenance page.
+- [`components/`](components/) — React/Tailwind marketplace components that render from compact seeds.
+- [`scripts/npm_supply_chain_guard.py`](scripts/npm_supply_chain_guard.py) — npm supply-chain infection guard for package manifests and lockfiles.
 - [`commands/`](commands/) — reusable workflow commands.
 - [`agents/`](agents/) — focused specialist agent specs.
 - [`rules/`](rules/) — IP/licensing, wallet UX, and cybersecurity defaults.
 - [`references/`](references/) — concrete site and UX patterns.
 - [`examples/`](examples/) — example marketplace and real-world utility use cases.
 - [`scripts/validate.py`](scripts/validate.py) — structural validation.
-- [`docs/`](docs/) — bounty submission and repository documentation.
+- [`docs/`](docs/) — bounty submission, storytelling, seeded React workflow, and repository documentation.
 
 ## Repository structure
 
@@ -126,6 +131,8 @@ Do **not** use it as:
 ├── install.sh
 ├── skill/
 ├── templates/
+├── components/
+├── scripts/
 ├── commands/
 ├── agents/
 ├── rules/
@@ -199,6 +206,42 @@ Then it should produce a practical plan:
 - cybersecurity alerts;
 - hackathon demo plan;
 - validation metrics.
+
+## Seeded React marketplace system
+
+The repository also includes a lightweight React/Tailwind implementation for turning these decisions into versionable marketplace UI while reducing repeated agent output.
+
+- [`templates/react-marketplace-seeds.ts`](templates/react-marketplace-seeds.ts) stores compact marketplace seeds such as `threedCcConcierge`, `musicDropMembership`, and `universityHackathonTicket`.
+- [`components/SeededMarketplacePage.tsx`](components/SeededMarketplacePage.tsx) renders reusable sections from a seed: hero, proof strip, featured listing, license tiers, Solana proof, protected delivery, creator ops, security notes, and metrics.
+- [`docs/REACT_SEEDED_COMPONENTS.md`](docs/REACT_SEEDED_COMPONENTS.md) explains the seed contract, compact mode, and versioning workflow.
+- [`docs/STORYTELLING.md`](docs/STORYTELLING.md) frames the project narrative for the Solana grant/bounty: less prompting, more repeatable product quality, and better marketplace demos.
+
+The seed pattern is designed for token efficiency: ask an agent to adapt a small seed diff instead of regenerating a full landing page or product flow from scratch. Customization still stays high because each seed controls audience, license model, proof strategy, security emphasis, and metrics.
+
+```tsx
+import { SeededMarketplacePage } from './components/SeededMarketplacePage';
+
+export default function Page() {
+  return <SeededMarketplacePage seedId="threedCcConcierge" compact />;
+}
+```
+
+## Supply-chain security and quarantine
+
+The repo now includes a practical npm supply-chain guard and emergency pause pattern for marketplace projects.
+
+- [`scripts/npm_supply_chain_guard.py`](scripts/npm_supply_chain_guard.py) scans package manifests and lockfiles for suspicious lifecycle scripts, non-registry dependencies, insecure lockfile URLs, and npm audit findings.
+- [`templates/quarantine-fallback.ts`](templates/quarantine-fallback.ts) provides a small function wrapper to quarantine risky operations such as checkout, protected downloads, uploads, asset replacement, payout changes, and wallet claims.
+- [`templates/maintenance-page.html`](templates/maintenance-page.html) is a ready-to-ship public pause page for projects that need to stop user-facing flows while a security review happens.
+- [`docs/SUPPLY_CHAIN_SECURITY.md`](docs/SUPPLY_CHAIN_SECURITY.md) documents the routine, safer install defaults, incident checklist, and quarantine workflow.
+
+Recommended first check:
+
+```bash
+python3 scripts/npm_supply_chain_guard.py /path/to/project --audit --fail-on medium
+```
+
+Default incident posture: pause checkout and file unlocks first, review dependency findings, rotate secrets if install scripts may have run with credentials, then release quarantine only after human review.
 
 ## UX references
 

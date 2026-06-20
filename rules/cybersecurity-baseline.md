@@ -12,7 +12,8 @@ Include cybersecurity alerts when the plan touches:
 - Solana receipts;
 - comments/reviews/bios/descriptions;
 - admin dashboards;
-- creator payout changes.
+- creator payout changes;
+- npm/package supply-chain, build scripts, wallet packages, checkout SDKs, upload helpers, or 3D viewer dependencies.
 
 ## Required defaults
 
@@ -26,3 +27,6 @@ Include cybersecurity alerts when the plan touches:
 - No service-role secrets in frontend code.
 - Role-based admin access.
 - Audit logs for asset replacement and payout changes.
+- Run the npm supply-chain guard before installing/building unknown projects.
+- Quarantine checkout, downloads, uploads, admin mutations, and wallet claims on medium/high supply-chain findings.
+- Serve a maintenance page when a project must be paused for review.

@@ -55,11 +55,13 @@ It is especially useful for categories like:
   - IP risk checklist;
   - metrics and funnel;
   - funding readiness.
-- Templates for creator intake, asset license brief, risk register, demo script, and investor one-pager.
+- Templates for creator intake, asset license brief, risk register, demo script, investor one-pager, and typed marketplace seeds.
+- React/Tailwind components for rendering versionable marketplace pages from compact seeds.
 - Commands for marketplace flow, creator intake, license brief, and funding demo preparation.
 - Agents for marketplace product strategy, creator ops review, and Solana receipt architecture.
 - Rules for IP/licensing safety, no wallet-first UX by default, and a cybersecurity baseline.
 - A concrete site/UX pattern reference using examples from Sketchfab, Gumroad, Fab/Unreal Marketplace, BOOTH/Jinxxy, MyMiniFactory/Printables, ArtStation, CGTrader, and TurboSquid.
+- Supply-chain guard, quarantine fallback, and maintenance page for pausing risky marketplace flows.
 - Validation script and install script.
 
 ## Quality / testing
@@ -69,16 +71,23 @@ The repo includes `scripts/validate.py`, which checks required files, `SKILL.md`
 Validation run locally:
 
 ```text
-OK: validated 28 required files
-SKILL.md chars: 5219
-README chars: 4918
+OK: validated 44 required files
+SKILL.md chars: 7621
+README chars: 15128
 ```
 
 Install script tested locally:
 
 ```text
-Installed solana-digital-asset-marketplace-skill
-Entry point: skill/SKILL.md
+Installed solana-digital-asset-marketplace-skill to: /tmp/.../install
+Entry point: /tmp/.../install/skill/SKILL.md
+install component copy OK
+```
+
+Supply-chain guard tested locally:
+
+```text
+NPM supply-chain guard: 0 finding(s)
 ```
 
 ## Human design choices
