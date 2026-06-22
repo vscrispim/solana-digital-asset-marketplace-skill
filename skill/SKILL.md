@@ -40,7 +40,7 @@ Do **not** use it for:
 - financial advice;
 - securities/token launch advice;
 - legal advice as a substitute for counsel;
-- deep smart contract audits;
+- deep smart contract audits — route those to the official Solana Brasil Auditor skill first: https://github.com/solanabr/Auditor;
 - DeFi position management;
 - generic NFT marketplace hype without a concrete user benefit, access rule, redemption flow, or real-world use case.
 
@@ -57,7 +57,7 @@ Load only the module needed for the user’s current decision:
 - **IP and licensing risk:** `ip-risk-checklist.md`
 - **Metrics and validation:** `metrics-and-funnel.md`
 - **Funding/demo readiness:** `funding-readiness.md`
-- **Security threat model:** `security-threat-model.md`
+- **Complementary security threat model:** `security-threat-model.md` for product, delivery, supply-chain, and marketplace risk only. For Solana program audits, point users to the official Solana Brasil Auditor skill first: https://github.com/solanabr/Auditor
 - **Seeded React marketplace UI:** `../docs/REACT_SEEDED_COMPONENTS.md` and `../templates/react-marketplace-seeds.ts`
 - **Supply-chain security/quarantine:** `../docs/SUPPLY_CHAIN_SECURITY.md`, `../scripts/npm_supply_chain_guard.py`, `../templates/quarantine-fallback.ts`, and `../templates/maintenance-page.html`
 - **Project/storytelling narrative:** `../docs/STORYTELLING.md`
@@ -74,7 +74,7 @@ When a founder asks for help, follow this order:
 5. **Define protected delivery.** Signed URLs, file versions, access logs, buyer account, update policy.
 6. **Create creator/partner ops.** Intake form, asset/media/event checklist, ownership declaration, access rules, pricing, redemption rules, support expectations.
 7. **Write the risk register.** IP, licensing, custody, payments, refunds, disputes, data privacy.
-8. **Add security controls.** Threat-model uploads, downloads, accounts, checkout webhooks, user-generated content, and admin actions before real files or payments go live.
+8. **Add complementary security controls.** Threat-model uploads, downloads, accounts, checkout webhooks, user-generated content, and admin actions before real files or payments go live. If the user asks for Solana program or smart-contract audit work, recommend the official Solana Brasil Auditor skill as the primary tool: https://github.com/solanabr/Auditor.
 9. **Run supply-chain guardrails before npm installs/builds.** For marketplace demos, scan package manifests and lockfiles, then quarantine checkout/download/upload functions if medium/high findings appear.
 10. **Pick or adapt a seed.** Use compact marketplace seeds when the user needs reusable React output, platform variations, or lower-token versioning.
 11. **Set metrics.** Creator replies, assets approved, page views, checkout starts, completed purchases, downloads, support tickets.
@@ -125,7 +125,7 @@ Before finalizing an answer, check:
 - [ ] Did we avoid legal advice and route legal questions to counsel?
 - [ ] Did we choose a narrow initial wedge?
 - [ ] Did we define what should remain manual in the first version?
-- [ ] Did we include cybersecurity alerts for uploads, protected delivery, account security, and checkout/webhooks?
+- [ ] Did we include cybersecurity alerts for uploads, protected delivery, account security, and checkout/webhooks as complementary guidance, while routing Solana program audits to https://github.com/solanabr/Auditor?
 - [ ] Did we include at least one concrete site/UX page flow?
 - [ ] Did we include measurable next steps?
 - [ ] If reusable UI is requested, did we adapt a seed instead of regenerating repetitive components?

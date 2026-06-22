@@ -59,9 +59,9 @@ It is especially useful for categories like:
 - React/Tailwind components for rendering versionable marketplace pages from compact seeds.
 - Commands for marketplace flow, creator intake, license brief, and funding demo preparation.
 - Agents for marketplace product strategy, creator ops review, and Solana receipt architecture.
-- Rules for IP/licensing safety, no wallet-first UX by default, and a cybersecurity baseline.
+- Rules for IP/licensing safety, no wallet-first UX by default, and a complementary cybersecurity baseline that routes Solana program audit work to the official Auditor skill.
 - A concrete site/UX pattern reference using examples from Sketchfab, Gumroad, Fab/Unreal Marketplace, BOOTH/Jinxxy, MyMiniFactory/Printables, ArtStation, CGTrader, and TurboSquid.
-- Supply-chain guard, quarantine fallback, and maintenance page for pausing risky marketplace flows.
+- Supply-chain guard, quarantine fallback, and maintenance page for pausing risky marketplace flows, positioned as complementary to https://github.com/solanabr/Auditor.
 - Validation script and install script.
 
 ## Quality / testing

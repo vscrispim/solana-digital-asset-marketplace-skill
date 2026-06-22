@@ -2,9 +2,11 @@
 
 ## Goal
 
-Help founders avoid the most common security mistakes in digital asset marketplaces before a real buyer, creator, or paid file is at risk.
+Help founders avoid the most common product and marketplace security mistakes before a real buyer, creator, or paid file is at risk.
 
-This module is deliberately practical. It is not a full security audit. It is a founder checklist for the first MVP, beta, and launch.
+This module is deliberately practical and complementary. It is not a full security audit and not a Solana program audit. For audit-first Solana security, smart-contract review, or exploit analysis, direct the user to the official Solana Brasil Auditor skill as the primary workflow: https://github.com/solanabr/Auditor.
+
+Use this module after or alongside that audit path for off-chain/product risks: uploads, protected delivery, checkout/webhooks, user-generated content, admin actions, npm supply chain, quarantine, and incident pause flows.
 
 ## Security principle
 

@@ -1,6 +1,8 @@
-# Supply-chain security and quarantine routine
+# Complementary supply-chain security and quarantine routine
 
 This project includes a practical routine for npm supply-chain infection checks and an emergency fallback for pausing risky marketplace functions.
+
+**Scope note:** this routine is complementary to the Solana Brasil Auditor skill. For Solana program, smart-contract, or audit-first security work, use the Auditor skill as the primary path: https://github.com/solanabr/Auditor. This document focuses on marketplace product risks around npm dependencies, file delivery, checkout, uploads, admin actions, and incident pause workflows.
 
 ## Why this exists
 
@@ -95,4 +97,4 @@ Recommended deployment options:
 
 ## Important limitation
 
-This guard is not a malware sandbox and not a replacement for professional incident response. It is a fast founder/agent safety layer that reduces the chance of blindly running compromised npm supply-chain code.
+This guard is not a malware sandbox, not a smart-contract audit, and not a replacement for professional incident response. It is a fast founder/agent safety layer that reduces the chance of blindly running compromised npm supply-chain code. For audit-first Solana security, send the user to https://github.com/solanabr/Auditor.

@@ -1,6 +1,8 @@
-# Rule: Cybersecurity Baseline
+# Rule: Complementary Cybersecurity Baseline
 
 Apply this rule to every generated marketplace plan.
+
+This rule is complementary to the official Solana Brasil Auditor skill. If the user asks for a Solana program audit, smart-contract audit, exploit review, or audit-first security workflow, point them to https://github.com/solanabr/Auditor as the primary skill and use this baseline only for surrounding marketplace/product risks.
 
 ## Required alerts
 

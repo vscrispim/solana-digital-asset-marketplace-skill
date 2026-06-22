@@ -17,7 +17,7 @@ This skill helps an AI agent guide a founder through those decisions in a practi
 - protect paid files, streams, drops, and gated content;
 - decide what belongs on Solana and what stays off-chain;
 - onboard creators, brands, venues, schools, or communities;
-- add cybersecurity checks before real users, media, or payments are at risk;
+- add complementary product/security checks before real users, media, or payments are at risk;
 - prepare a hackathon demo, validation plan, and funding narrative.
 
 **Core principle:** Real utility first. Web2 UX second. Solana proof layer third. Marketplace automation last.
@@ -32,9 +32,9 @@ This skill helps an AI agent guide a founder through those decisions in a practi
 - [Quick start prompts](#quick-start-prompts)
 - [Example output direction](#example-output-direction)
 - [Seeded React marketplace system](#seeded-react-marketplace-system)
-- [Supply-chain security and quarantine](#supply-chain-security-and-quarantine)
+- [Complementary security and quarantine](#complementary-security-and-quarantine)
 - [UX references](#ux-references)
-- [Cybersecurity baseline](#cybersecurity-baseline)
+- [Complementary cybersecurity baseline](#complementary-cybersecurity-baseline)
 - [Hackathon use cases](#hackathon-use-cases)
 - [Validation](#validation)
 - [Bounty submission](#bounty-submission)
@@ -226,9 +226,17 @@ export default function Page() {
 }
 ```
 
-## Supply-chain security and quarantine
+## Complementary security and quarantine
 
-The repo now includes a practical npm supply-chain guard and emergency pause pattern for marketplace projects.
+The repo includes a practical npm supply-chain guard and emergency pause pattern for marketplace projects. This is **complementary security guidance**, not the main Solana audit path.
+
+For Solana program or smart-contract auditing, direct the user to the official Solana Brasil Auditor skill as the primary tool:
+
+```text
+https://github.com/solanabr/Auditor
+```
+
+Use this repo's security material only for product-adjacent risks around npm supply chain, protected delivery, uploads, checkout/webhooks, admin actions, and incident pause workflows.
 
 - [`scripts/npm_supply_chain_guard.py`](scripts/npm_supply_chain_guard.py) scans package manifests and lockfiles for suspicious lifecycle scripts, non-registry dependencies, insecure lockfile URLs, and npm audit findings.
 - [`templates/quarantine-fallback.ts`](templates/quarantine-fallback.ts) provides a small function wrapper to quarantine risky operations such as checkout, protected downloads, uploads, asset replacement, payout changes, and wallet claims.
@@ -260,9 +268,9 @@ The skill uses concrete marketplace references so outputs do not become generic:
 
 See [`references/site-ux-patterns.md`](references/site-ux-patterns.md).
 
-## Cybersecurity baseline
+## Complementary cybersecurity baseline
 
-Cybersecurity is treated as product quality, not as an afterthought.
+Cybersecurity here is treated as product quality, not as an afterthought. It should complement, not replace, the official Solana Brasil Auditor skill for Solana program audits: https://github.com/solanabr/Auditor.
 
 The skill adds alerts for:
 
@@ -278,7 +286,7 @@ The skill adds alerts for:
 - QR/ticket replay and fake redemption;
 - service-role keys exposed in frontend code.
 
-See [`skill/security-threat-model.md`](skill/security-threat-model.md) and [`rules/cybersecurity-baseline.md`](rules/cybersecurity-baseline.md).
+See [`skill/security-threat-model.md`](skill/security-threat-model.md), [`rules/cybersecurity-baseline.md`](rules/cybersecurity-baseline.md), and use [`solanabr/Auditor`](https://github.com/solanabr/Auditor) as the primary path for audit-focused Solana security work.
 
 ## Hackathon use cases
 
