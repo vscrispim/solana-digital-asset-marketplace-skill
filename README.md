@@ -32,6 +32,8 @@ This skill helps an AI agent guide a founder through those decisions in a practi
 - [Quick start prompts](#quick-start-prompts)
 - [Example output direction](#example-output-direction)
 - [Seeded React marketplace system](#seeded-react-marketplace-system)
+- [Safe AI Skill integration — Agent security firewall](#safe-ai-skill-integration--agent-security-firewall)
+- [📱 Landing page examples — 5 marketplaces](#-landing-page-examples--5-marketplaces)
 - [Complementary security and quarantine](#complementary-security-and-quarantine)
 - [UX references](#ux-references)
 - [Complementary cybersecurity baseline](#complementary-cybersecurity-baseline)
@@ -225,6 +227,72 @@ export default function Page() {
   return <SeededMarketplacePage seedId="threedCcConcierge" compact />;
 }
 ```
+
+## Safe AI Skill integration — Agent security firewall
+
+This project integrates **Safe AI Skill**, a security guard layer that protects any AI agent workflow from supply-chain risk, command injection, and unauthorized mainnet operations.
+
+### The 4 hard guards
+
+| Guard | What it does | Where it applies |
+|-------|-------------|------------------|
+| 🚫 **Mainnet Guard** | Blocks deploys to Solana mainnet unless authorized by multi-sig | `scripts/`, `commands/`, agent-delegated deploy actions |
+| 🔒 **Authority Lock** | Requires 2-of-3 approval for account authority changes | Creator payout changes, marketplace ownership, mint authority |
+| 🛡️ **Account Shield** | Quarantines account close operations with 24h cooldown | Wallet close, marketplace treasury, admin accounts |
+| 🔑 **Secret Vault** | Never exposes private keys or secrets to agents; all reads logged | `.env`, keypairs, webhook secrets, API tokens |
+
+### Plug-and-play
+
+Safe AI Skill works with any AI skill, MCP, or agent. Add it to any workflow:
+
+```bash
+# Gate any command through Safe AI Skill
+safe-ai-skill gate "solana program deploy ..."
+safe-ai-skill check "npm publish"
+safe-ai-skill audit --all
+```
+
+It pins every installed skill & MCP to a git SHA, quarantines anything that drifts, and flags `curl | bash` installers + known CVEs.
+
+### In this repository
+
+Safe AI Skill is demonstrated through:
+
+- **5 marketplace landing pages** — each showing a different niche with Safe AI Skill badges and guard descriptions
+- **Script guards** — `scripts/npm_supply_chain_guard.py` and quarantine fallback patterns
+- **Security rules** — `rules/cybersecurity-baseline.md` aligns with Safe AI Skill's philosophy
+
+### Quick demo
+
+```bash
+# Audit a skill directory for supply-chain risks
+python3 scripts/npm_supply_chain_guard.py . --audit
+
+# Check quarantine patterns
+cat templates/quarantine-fallback.ts
+```
+
+## 📱 Landing page examples — 5 marketplaces
+
+The [`examples/landing-pages/`](examples/landing-pages/) folder contains **5 complete HTML landing pages**, each for a different marketplace niche, demonstrating Safe AI Skill integration:
+
+| # | Marketplace | Niche | Visual Identity |
+|---|-------------|-------|-----------------|
+| 01 | **CryptoPulse** | NFT Art | Futurista, gradient purple/pink |
+| 02 | **ModelHub** | 3D Models & Avatars | Clean, gradient cyan/blue |
+| 03 | **BeatVault** | Music Beats | Creative, gradient violet/fuchsia |
+| 04 | **SkinForge** | Gaming Skins | Gaming, gradient red/orange |
+| 05 | **CreatorPass** | Memberships & Tickets | Professional, gradient emerald/teal |
+
+Each page is a self-contained HTML file with Tailwind CSS, ready to open in any browser.
+
+```bash
+# Browse the examples
+ls examples/landing-pages/
+open examples/landing-pages/01-cryptopulse-nft-marketplace.html
+```
+
+Screenshots of each page are available in the same folder (`screenshot-*.png`).
 
 ## Complementary security and quarantine
 
