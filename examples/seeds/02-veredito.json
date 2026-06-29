@@ -9,7 +9,7 @@
   "primary": "#2563eb",
   "accent": "#22c55e",
   "bg": "#f7f8fa",
-  "theme": "Kalshi/Sportingbet, clean white cards, probability bars, YES/NO odds, category tabs, no navbar, no badges",
+  "theme": "Clean white cards, probability bars, YES/NO odds, category tabs, oracle attribution, no navbar, no badges",
   "categories": ["All markets", "Crypto", "Sports", "Politics", "Tech"],
   "columns": [
     {

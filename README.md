@@ -8,23 +8,23 @@ Superteam Brasil Solana AI Kit Skills Bounty.
 
 ### Swap — DeFi Terminal
 ![Swap](examples/swap-preview.png)
-Green-on-black monospace terminal with real token coin icons (SOL, BONK, PYTH, RAY, JTO via CoinGecko), live SVG sparkline charts, and gradient pulse background. No navbar. No badges.
+Green-on-black monospace terminal with real token coin icons (SOL, BONK, PYTH, RAY, JTO via CoinGecko), live SVG sparkline charts, and gradient pulse background.
 
 ### Veredito — Prediction Markets
 ![Veredito](examples/veredito-preview.png)
-Kalshi/Sportingbet-style clean white cards with probability bars, YES/NO odds panels, category tabs, multi-outcome stacked bars, and resolved market stamps. No navbar. No badges.
+Clean white cards with probability bars, YES/NO odds panels, category tabs, multi-outcome stacked bars, oracle resolution stamps, and Switchboard/Pyth attribution.
 
 ### Wave — Music Licensing
 ![Wave](examples/wave-preview.png)
-Tidal/Spotify-inspired track list with numbered rows, play buttons, colored genre badges, SOL prices. Canvas wave animation background. No hero section, no navbar, no badges.
+Track list with numbered rows, play buttons, colored genre badges, SOL prices. Canvas wave animation background.
 
 ### Exhibit — Editorial Art Magazine
 ![Exhibit](examples/exhibit-preview.png)
-Full-bleed magazine cover with Playfair Display serif, feature article with pull quotes and drop caps, "On View" gallery grid, related reading section. Gold (#d4a574) accent. No navbar. No badges.
+Full-bleed magazine cover with Playfair Display serif, feature article with pull quotes and drop caps, "On View" gallery grid, related reading section. Gold (#d4a574) accent.
 
 ### Guild — Medieval Fantasy Membership
 ![Guild](examples/guild-preview.png)
-Ember fire animations, stone texture background, tier cards (Squire/Knight/Lord), stats banner (members, treasury, commissions). No navbar. No badges.
+Ember fire animations, stone texture background, tier cards (Squire/Knight/Lord), stats banner (members, treasury, commissions).
 
 ## Quick start
 
@@ -118,10 +118,10 @@ Produces a fully rendered `swap.html`.
 ### 1. Swap — DeFi Terminal
 Real token coin icons from CoinGecko (SOL, BONK, PYTH, RAY, JTO). Terminal window with macOS-style traffic lights. Route badges for Jupiter, Raydium, Orca, OpenBook, Meteora DLMM. Green gradient pulse background.
 
-### 2. Veredito — Prediction Markets (Kalshi style)
-Category tabs at top. YES/NO odds in side panel. Probability bars on each card. Multi-outcome markets with stacked colored bars. Resolved section with YES/NO resolution stamps and oracle attribution.
+### 2. Veredito — Prediction Markets
+Category tabs at top. YES/NO odds in side panel. Probability bars on each card. Multi-outcome markets with stacked colored bars. Resolved section with YES/NO resolution stamps and oracle attribution (Switchboard, Pyth).
 
-### 3. Wave — Music Licensing (Tidal-inspired)
+### 3. Wave — Music Licensing
 No hero. Just a track list with 01-05 numbering, circular play buttons that fill on hover, genre tags with per-genre colors, SOL prices, BPM, and duration. Canvas wave animation in background.
 
 ### 4. Exhibit — Editorial Art Magazine
@@ -153,8 +153,6 @@ Official sources only: docs.solana.com, solana.com, solana.foundation, github.co
 ```bash
 python3 scripts/validate.py
 ```
-
-Requires 44 files. SKILL.md >= 5000 chars. README >= 9000 chars.
 
 ## Why this belongs in Solana AI Kit
 

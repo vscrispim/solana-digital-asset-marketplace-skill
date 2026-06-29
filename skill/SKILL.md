@@ -1,6 +1,6 @@
 ---
 name: solana-digital-asset-marketplace
-description: Produces premium, production-grade landing pages from compact JSON seeds. Five distinct layouts: DeFi terminal with real token icons, Kalshi-style prediction markets, Spotify-like music licensing with animated waves, magazine editorial art gallery, and medieval fantasy guild membership. Supports motion graphics, Google Material Icons, and wiring for Supabase, Solana Pay, and wallet connect. One-prompt capable. Model-agnostic.
+description: Produces premium, production-grade landing pages from compact JSON seeds. Five distinct layouts: DeFi terminal with real token icons, prediction markets with oracle resolution, music licensing with animated waves, magazine editorial art gallery, and medieval fantasy guild membership. Supports motion graphics, Google Material Icons, and wiring for Supabase, Solana Pay, and wallet connect. One-prompt capable. Model-agnostic.
 version: 5.0.0
 author: Superteam Brasil
 license: MIT
@@ -38,11 +38,11 @@ Generates fully self-contained HTML landing pages from JSON seeds. Five layouts 
 Green-on-black monospace terminal. Real token coin icons (SOL, BONK, PYTH, RAY, JTO via CoinGecko). SVG sparkline charts. Route badges for Jupiter, Raydium, Orca, OpenBook, Meteora. Gradient pulse background. No navbar. No badges.
 Best for: DEX, DeFi dashboards, trading terminals.
 
-### veredito — Prediction Markets (Kalshi/Sportingbet style)
+### veredito — Prediction Markets
 Clean white/gray cards with probability bars. YES/NO odds in side panels. Category tabs (All, Crypto, Sports, Politics, Tech). Multi-outcome markets with stacked bars. Resolved markets with resolution stamps. No navbar. No badges.
 Best for: prediction markets, sports betting UIs, governance voting.
 
-### wave — Music Licensing (Tidal/Spotify-inspired)
+### wave — Music Licensing
 No hero section. Track list with numbered rows, play buttons, genre tags, prices in SOL. Canvas wave animation background. Colored genre badges per track. Hover expansion on rows. No navbar. No badges.
 Best for: music platforms, sample libraries, audio licensing.
 

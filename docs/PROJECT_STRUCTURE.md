@@ -1,6 +1,6 @@
 # Project Structure
 
-This repository follows the Solana AI Kit skill shape while keeping bounty/supporting material out of the root directory.
+This repository follows the Solana AI Kit skill shape.
 
 ```text
 .
@@ -19,21 +19,26 @@ This repository follows the Solana AI Kit skill shape while keeping bounty/suppo
 │   ├── metrics-and-funnel.md
 │   ├── funding-readiness.md
 │   └── security-threat-model.md
-├── templates/                    # Templates, seed data, quarantine fallback, maintenance page
-├── components/                   # React/Tailwind marketplace components rendered from seeds
-├── scripts/                      # Validation and supply-chain guard scripts
+├── templates/                    # Templates, intake forms, demo scripts
+├── scripts/                      # Validation script
 ├── commands/                     # Workflow command specs
 ├── agents/                       # Specialist agent specs
 ├── rules/                        # Safety and product rules
 ├── references/                   # UX/product references used by the skill
-├── examples/                     # Example marketplace use cases
-├── scripts/                      # Validation scripts
-└── docs/                         # Bounty and repository documentation
+├── examples/                     # Working HTML pages + JSON seeds + preview PNGs
+│   ├── seeds/                    # 5 layout seeds (JSON)
+│   ├── generate.js               # Single-file HTML generator
+│   ├── *.html                    # 5 rendered landing pages
+│   └── *-preview.png             # 5 preview screenshots
+├── integrations/                 # Functional integration modules
+└── docs/                         # Repository documentation
 ```
 
 ## Why this layout
 
 - `skill/` stays focused on progressive loading.
-- `templates/`, `components/`, `commands`, `agents`, and `rules/` mirror the structure requested by the bounty while adding versionable React demo artifacts.
+- `examples/` contains fully rendered HTML pages, their JSON seeds, and preview screenshots.
+- `integrations/` holds functional code for Supabase, Solana Pay, and wallet connect.
+- `templates/`, `commands`, `agents`, and `rules/` mirror the structure requested by the bounty.
 - `references/` keeps longer background material separate from the routing entry point.
-- `docs/` keeps bounty submission text, storytelling, seeded React workflow notes, supply-chain security guidance, and repository notes out of the root.
+- `docs/` keeps repository documentation out of the root.
