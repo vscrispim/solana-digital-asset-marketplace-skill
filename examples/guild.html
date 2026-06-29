@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guild — Medieval Creator Collective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;background:#0a0908;color:#c4b5a5;min-height:100vh;overflow-x:hidden}
+img{display:block;max-width:100%}
+.serif{font-family:'Playfair Display',serif}
+.mono{font-family:'JetBrains Mono',monospace}
+.material-symbols-rounded{font-family:'Material Symbols Rounded'!important;vertical-align:middle;font-variation-settings:'FILL'0,'wght'400,'GRAD'0,'opsz'24}
+.bg-texture{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 15 L45 15 L38 22 L41 32 L30 26 L19 32 L22 22 L15 15 L25 15 Z' fill='%23d4a574'/%3E%3C/svg%3E");background-size:80px 80px}
+@keyframes ember{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:.8;transform:translateY(-4px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .7s cubic-bezier(.16,1,.3,1) both}
+.fade-up:nth-child(2){animation-delay:.1s}.fade-up:nth-child(3){animation-delay:.2s}
+.fade-up:nth-child(4){animation-delay:.3s}
+.tier-card{position:relative;background:linear-gradient(180deg,#1a1510,#11100a);border:1px solid #2a2418;border-radius:6px;padding:40px 32px;text-align:center;transition:all .4s cubic-bezier(.16,1,.3,1);overflow:hidden}
+.tier-card::before{content:'';position:absolute;inset:0;border:1px solid #d4a574;border-radius:6px;opacity:0;transition:opacity .4s;pointer-events:none}
+.tier-card:hover{transform:translateY(-6px);border-color:#3a3020}
+.tier-card:hover::before{opacity:.15}
+.tier-card.featured{border-color:#d4a57430;background:linear-gradient(180deg,#1f1a12,#151108)}
+.tier-card.featured::before{opacity:.12}
+.tier-icon{width:56px;height:56px;margin:0 auto 20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px}
+.divider{width:40px;height:2px;background:#d4a57440;margin:0 auto 24px}
+.ember{display:inline-block;animation:ember 2s ease-in-out infinite}
+.ember:nth-child(2){animation-delay:.4s}.ember:nth-child(3){animation-delay:.8s}
+@media(max-width:768px){html{font-size:15px}.tier-card{padding:32px 24px}}
+</style></head><body>
+<div class="bg-texture"></div>
+
+<main style="position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:80px 24px">
+  <div style="text-align:center;margin-bottom:64px">
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px">
+      <span class="ember" style="font-size:14px"><span class="material-symbols-rounded" style="font-size:inherit;color:#d4a574">local_fire_department</span></span>
+      <span class="ember" style="font-size:10px"><span class="material-symbols-rounded" style="font-size:inherit;color:#d4a574">local_fire_department</span></span>
+      <span class="ember" style="font-size:14px"><span class="material-symbols-rounded" style="font-size:inherit;color:#d4a574">local_fire_department</span></span>
+    </div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(40px,8vw,68px);font-weight:900;letter-spacing:-.02em;line-height:1;color:#d4a574;margin-bottom:12px">The Guild</h1>
+    <p style="font-size:16px;color:#7a6e5e;max-width:500px;margin:0 auto;line-height:1.6">A fellowship of creators who own their craft. Revenue shared. Decisions voted. Allegiance recorded on Solana.</p>
+    <div class="divider" style="margin-top:28px"></div>
+  </div>
+
+  <!-- Lore section -->
+  <div style="max-width:600px;margin:0 auto 64px;text-align:center">
+    <p style="font-size:14px;color:#6b5f50;line-height:1.8;font-style:italic">In the old world, guilds protected artisans from lords and merchants. In ours, the chain protects creators from platforms. Every member holds a key. Every contribution is recorded. Every reward is split by the charter.</p>
+  </div>
+
+  <!-- Tiers -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:stretch">
+    <div class="tier-card fade-up">
+      <div class="tier-icon" style="background:#2a2418;color:#8b7355"><span class="material-symbols-rounded" style="font-size:28px">shield</span></div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8b7355;margin-bottom:12px">Squire</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:900;color:#d4a574;margin-bottom:4px">0.5 SOL</div>
+      <div style="font-size:11px;color:#6b5f50;margin-bottom:24px">Monthly tribute</div>
+      <div class="divider"></div>
+      <div style="text-align:left;font-size:13px;color:#8b7d6b;line-height:2">
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Access to the Great Hall</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Voting rights on proposals</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Early access to new works</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>5 claims per moon cycle</div>
+      </div>
+      <a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:24px;padding:12px 24px;border:1px solid #3a3020;border-radius:4px;color:#8b7355;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s">Swear Fealty</a>
+    </div>
+
+    <div class="tier-card fade-up featured">
+      <div class="tier-icon" style="background:linear-gradient(135deg,#3a2a10,#4a3520);color:#d4a574"><span class="material-symbols-rounded" style="font-size:28px">swords</span></div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#d4a574;margin-bottom:12px">Knight</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:900;color:#d4a574;margin-bottom:4px">1.2 SOL</div>
+      <div style="font-size:11px;color:#6b5f50;margin-bottom:24px">Annual oath</div>
+      <div class="divider"></div>
+      <div style="text-align:left;font-size:13px;color:#8b7d6b;line-height:2">
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>All Squire rights</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>5% share of the treasury</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Curate the collection</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Unlimited claims</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Seat at the Round Table</div>
+      </div>
+      <a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:24px;padding:12px 24px;background:linear-gradient(135deg,#d4a574,#8b6914);border:none;border-radius:4px;color:#0a0908;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s">Take the Oath</a>
+    </div>
+
+    <div class="tier-card fade-up">
+      <div class="tier-icon" style="background:#2a2418;color:#d4a574"><span class="material-symbols-rounded" style="font-size:28px">crown</span></div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#d4a574;margin-bottom:12px">Lord</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:900;color:#d4a574;margin-bottom:4px">3.0 SOL</div>
+      <div style="font-size:11px;color:#6b5f50;margin-bottom:24px">Perpetual charter</div>
+      <div class="divider"></div>
+      <div style="text-align:left;font-size:13px;color:#8b7d6b;line-height:2">
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>All Knight rights</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>12% share of the treasury</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Co-authorship on works</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Private commission rights</div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:#d4a574"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>Veto power on charters</div>
+      </div>
+      <a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:24px;padding:12px 24px;border:1px solid #3a3020;border-radius:4px;color:#8b7355;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s">Claim Lordship</a>
+    </div>
+  </div>
+
+  <!-- Stats banner -->
+  <div style="margin-top:64px;padding:40px;background:#11100a;border:1px solid #2a2418;border-radius:6px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:24px;text-align:center">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:#d4a574">247</div>
+      <div style="font-size:11px;color:#6b5f50;margin-top:4px;letter-spacing:.05em">Members sworn</div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:#d4a574">1,240 SOL</div>
+      <div style="font-size:11px;color:#6b5f50;margin-top:4px;letter-spacing:.05em">Treasury held</div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:#d4a574">89</div>
+      <div style="font-size:11px;color:#6b5f50;margin-top:4px;letter-spacing:.05em">Works commissioned</div>
+    </div>
+  </div>
+</main>
+<footer style="position:relative;z-index:2;border-top:1px solid #1f1a12;text-align:center;padding:28px;font-size:11px;color:#4a3f30;font-family:'JetBrains Mono',monospace">The Guild · Solana · Established 2026</footer>
+</body></html>

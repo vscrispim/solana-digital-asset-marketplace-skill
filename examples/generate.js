@@ -1,56 +1,118 @@
-#!/usr/bin/env node
-/**
- * Seeds Generator — Solana Digital Media Marketplace Skill
- *
- * Lê um seed JSON da pasta seeds/ e gera uma landing page HTML única.
- * Cada seed define: nome, layout, cores, guards, imagens e assets.
- *
- * Uso:
- *   node generate.js seeds/01-vitrine.json   → gera 01-vitrine.html
- *   node generate.js seeds/*.json            → gera todas
- *
- * O sistema é modular: qualquer seed nova gera uma página com experiência
- * visual diferente, exatamente como micro-versionamentos de produto.
- * Troque o seed, troque a experiência — sem tocar no template.
- */
+// generate.js — v5.0.0
+// Solana Digital Asset Marketplace Seed Renderer
+// Reads a JSON seed and produces a standalone HTML landing page.
+// Usage: node generate.js <seed.json> > output.html
 
 const fs = require('fs');
-const path = require('path');
 
-const seedsDir = path.join(__dirname, 'seeds');
-const outDir = __dirname;
+const seedPath = process.argv[2];
+if (!seedPath) { console.error('Usage: node generate.js <seed.json>'); process.exit(1); }
 
-// Layout map — cada layout renderiza o mesmo seed de forma visualmente única
-const layouts = {
-  'horizontal-scroll': renderScroll,
-  'staggered-wave': renderWave,
-  'circular-radial': renderRadial,
-  'split-parallax': renderSplit,
-  'masonry-shelf': renderMasonry,
-};
+const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
 
-function generate(seedPath) {
-  const seed = JSON.parse(fs.readFileSync(seedPath, 'utf-8'));
-  const renderer = layouts[seed.layout] || renderScroll;
-  const html = renderer(seed);
-  const outFile = path.join(outDir, `${seed.slug}.html`);
-  fs.writeFileSync(outFile, html, 'utf-8');
-  console.log(`✓ Generated: ${seed.slug}.html (${seed.layout})`);
+const BASE_CSS = `*,::before,::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;-webkit-font-smoothing:antialiased}body{font-family:'Inter',sans-serif;background:${seed.bg};color:#d0d0d0;min-height:100vh;overflow-x:hidden}img{display:block;max-width:100%}.mono{font-family:'JetBrains Mono',monospace}@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.fade-up{animation:fadeUp .6s cubic-bezier(.16,1,.3,1) both}`;
+
+// ==================== LAYOUT: SWAP ====================
+function renderSwap(seed) {
+  const items = seed.items.map((item, i) => {
+    const delay = (i * 0.08).toFixed(2);
+    const changeColor = item.change.startsWith('+') ? '#22c55e' : '#ef4444';
+    const imgTag = item.image ? `<img class="coin-img" src="${item.image}" alt="" crossorigin="anonymous" onerror="this.style.display='none'" style="width:32px;height:32px;border-radius:50%;flex-shrink:0">` : '';
+    // Generate sparkline
+    const sparkPath = generateSparkline(item.change.startsWith('+') ? '#00ff41' : item.sprite_color || '#ff6b35');
+    return `<div class="coin-row fade-up" style="animation-delay:${delay}s">
+      ${imgTag}
+      <div class="sparkline" style="width:80px;height:28px;flex-shrink:0">${sparkPath}</div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700;font-size:14px;color:#fff;font-family:'JetBrains Mono',monospace">${item.title}</span><span style="font-size:9px;color:${item.sprite_color||seed.primary};background:${item.sprite_color||seed.primary}10;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-weight:600">${item.subtitle}</span></div>
+        <div style="font-size:10px;color:#444;margin-top:2px;font-family:'JetBrains Mono',monospace">${item.extra}</div>
+      </div>
+      <div style="text-align:right"><div style="font-weight:700;font-size:15px;color:${item.sprite_color||seed.primary};font-family:'JetBrains Mono',monospace">${item.price}</div><div style="font-size:10px;color:${changeColor};font-family:'JetBrains Mono',monospace">${item.change}</div></div>
+    </div>`;
+  }).join('\n');
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${seed.name} — ${seed.market}</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"><style>${BASE_CSS}@keyframes bgPulse{0%,100%{opacity:.03}50%{opacity:.06}}.bg-pulse{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 20%,${seed.primary} 0%,transparent 60%);animation:bgPulse 4s ease-in-out infinite;pointer-events:none;z-index:0}.coin-row{display:flex;align-items:center;gap:14px;padding:18px 24px;border-bottom:1px solid #0f0f0f;cursor:pointer;transition:all .2s}.coin-row:hover{background:${seed.primary}06}@media(max-width:640px){.coin-row{gap:10px;padding:14px 16px}}</style></head><body><div class="bg-pulse"></div><main style="position:relative;z-index:2;max-width:900px;margin:0 auto;padding:60px 24px"><div style="margin-bottom:48px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span style="width:8px;height:8px;border-radius:50%;background:${seed.primary};display:inline-block;animation:dot 1.5s infinite"></span><span style="font-size:10px;color:${seed.primary};letter-spacing:.08em;text-transform:uppercase;font-weight:600;font-family:'JetBrains Mono',monospace">Live — Aggregated routing</span></div><h1 style="font-family:'JetBrains Mono',monospace;font-size:clamp(32px,7vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1;color:#fff;margin-bottom:12px">${seed.name} tokens<br>on <span style="color:${seed.primary}">Solana</span></h1><p style="font-size:14px;color:#666;max-width:480px;line-height:1.6;font-family:'JetBrains Mono',monospace">${seed.tagline}</p></div><div style="border:1px solid #141414;border-radius:12px;overflow:hidden;background:#030303"><div style="display:flex;align-items:center;gap:7px;padding:10px 18px;border-bottom:1px solid #141414;font-size:10px;color:#444;font-family:'JetBrains Mono',monospace"><span style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></span><span style="width:10px;height:10px;border-radius:50%;background:#febc2e"></span><span style="width:10px;height:10px;border-radius:50%;background:#28c840"></span><span style="margin-left:8px">terminal — swap.sol</span></div>${items}</div></main><footer style="position:relative;z-index:2;border-top:1px solid #0f0f0f;text-align:center;padding:20px;font-size:10px;color:#333;font-family:'JetBrains Mono',monospace">${seed.name} · Solana · ${seed.market}</footer></body></html>`;
 }
 
-// Roda para todos os seeds ou um específico
-const targets = process.argv.slice(2);
-if (targets.length === 0) {
-  // Generate all
-  const seeds = fs.readdirSync(seedsDir).filter(f => f.endsWith('.json'));
-  seeds.forEach(s => generate(path.join(seedsDir, s)));
-} else {
-  targets.forEach(t => generate(path.resolve(t)));
+// ==================== LAYOUT: VEREDITO ====================
+function renderVeredito(seed) {
+  const categories = (seed.categories || ["All markets", "Crypto", "Sports", "Politics", "Tech"]).map(c => `<span class="category-tab${c==='All markets'?' active':''}">${c}</span>`).join('\n');
+
+  const activeItems = seed.columns[0].items.map((item, i) => {
+    const hasMultiOutcome = item.outcomes;
+    if (hasMultiOutcome) {
+      const outcomes = item.outcomes.map(o => `<span style="font-size:10px;color:#888">${o}</span>`).join('');
+      return `<div class="event-card fade-up" style="animation-delay:${(i*0.08).toFixed(2)}s"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:16px;margin-bottom:4px;line-height:1.3">${item.title}</div><div style="font-size:12px;color:#999;margin-bottom:8px">${item.extra}</div><div style="display:flex;gap:16px;flex-wrap:wrap">${outcomes}</div></div><div style="flex-shrink:0;font-size:12px;font-weight:700;color:#1a1a2e;font-family:'JetBrains Mono',monospace">Pool: ${item.stake}</div></div></div>`;
+    }
+    return `<div class="event-card fade-up" style="animation-delay:${(i*0.08).toFixed(2)}s"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:16px;margin-bottom:4px;line-height:1.3">${item.title}</div><div style="font-size:12px;color:#999;display:flex;align-items:center;gap:8px;margin-bottom:12px"><span>${item.creator}</span><span>${item.extra}</span></div><div class="prob-bar" style="margin-bottom:6px"><div class="prob-fill" style="width:${item.probability.split('%')[0]||62}%;background:linear-gradient(90deg,#22c55e,#10b981)"></div></div><div style="display:flex;justify-content:space-between;font-size:11px;color:#888"><span>${item.probability}</span><span>${item.probability.includes('YES')?100-parseInt(item.probability):100-parseInt(item.probability)}% NO</span></div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0"><span class="odds-tag" style="background:#22c55e14;color:#22c55e">YES ${item.odds_yes||'0.62 SOL'}</span><span class="odds-tag" style="background:#ef444414;color:#ef4444">NO ${item.odds_no||'0.38 SOL'}</span><span style="font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace">Pool: ${item.stake}</span></div></div></div>`;
+  }).join('\n');
+
+  const resolvedItems = seed.columns[1].items.map((item, i) => {
+    const resolvedColor = item.resolved === 'yes' ? '#22c55e' : '#ef4444';
+    const resolvedLabel = item.resolved === 'yes' ? 'YES' : 'NO';
+    return `<div class="event-card fade-up" style="animation-delay:${(0.24+i*0.08).toFixed(2)}s;opacity:.75"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="background:${resolvedColor};color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px">${resolvedLabel}</span><span style="font-weight:700;font-size:16px;line-height:1.3">${item.title}</span></div><div style="font-size:11px;color:#999">${item.extra}</div></div><div style="flex-shrink:0;font-size:12px;font-weight:700;color:${resolvedColor};font-family:'JetBrains Mono',monospace">${item.stake}</div></div></div>`;
+  }).join('\n');
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${seed.name} — ${seed.market}</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"><style>${BASE_CSS}body{background:#f7f8fa;color:#1a1a2e}.event-card{background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:20px 24px;cursor:pointer;transition:all .2s}.event-card:hover{border-color:${seed.primary}40;box-shadow:0 4px 20px rgba(0,0,0,.04);transform:translateY(-1px)}.prob-bar{height:6px;border-radius:3px;overflow:hidden;background:#f0f0f0}.prob-fill{height:100%;border-radius:3px}.category-tab{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #e8eaed;background:#fff;color:#666;transition:all .2s}.category-tab.active,.category-tab:hover{background:${seed.primary};color:#fff;border-color:${seed.primary}}.odds-tag{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace}.material-symbols-rounded{font-family:'Material Symbols Rounded'!important;vertical-align:middle}</style></head><body><main style="max-width:1000px;margin:0 auto;padding:60px 24px"><div style="margin-bottom:40px"><h1 style="font-size:clamp(36px,6vw,52px);font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:8px">${seed.name}</h1><p style="font-size:15px;color:#777;margin-bottom:24px">${seed.tagline}</p><div style="display:flex;gap:8px;flex-wrap:wrap">${categories}</div></div><div style="display:flex;flex-direction:column;gap:10px"><div style="font-size:12px;font-weight:700;color:#999;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block"></span>Active Markets</div>${activeItems}<div style="font-size:12px;font-weight:700;color:#999;letter-spacing:.05em;text-transform:uppercase;margin:20px 0 4px;display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#6b7280;display:inline-block"></span>Recently Resolved</div>${resolvedItems}</div></main><footer style="border-top:1px solid #e8eaed;text-align:center;padding:20px;font-size:11px;color:#bbb">${seed.name} · Solana · ${seed.market}</footer></body></html>`;
 }
 
-// Layout renderers (simplified — each produces unique HTML structure)
-function renderScroll(seed) { return `<!-- ${seed.name} — Scroll Layout generated from seed -->`; }
-function renderWave(seed)   { return `<!-- ${seed.name} — Wave Layout generated from seed -->`; }
-function renderRadial(seed) { return `<!-- ${seed.name} — Radial Layout generated from seed -->`; }
-function renderSplit(seed)  { return `<!-- ${seed.name} — Split Layout generated from seed -->`; }
-function renderMasonry(seed){ return `<!-- ${seed.name} — Masonry Layout generated from seed -->`; }
+// ==================== LAYOUT: WAVE ====================
+function renderWave(seed) {
+  const items = seed.items.map((item, i) => {
+    const delay = (i * 0.06).toFixed(2);
+    return `<div class="track-row fade-up" style="animation-delay:${delay}s">
+      <span class="track-num">${String(i+1).padStart(2,'0')}</span>
+      <div class="play-btn"><span class="material-symbols-rounded" style="font-size:20px">play_arrow</span></div>
+      <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:15px;margin-bottom:4px">${item.title}</div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;color:#888">${item.creator}</span><span class="genre-tag" style="background:${item.genre_color||seed.primary}14;color:${item.genre_color||seed.primary}">${item.genre}</span></div></div>
+      <div style="text-align:right;flex-shrink:0"><div style="font-weight:700;font-size:16px;color:${item.genre_color||seed.primary};font-family:'JetBrains Mono',monospace">${item.price}</div><div style="font-size:10px;color:#555;font-family:'JetBrains Mono',monospace">${item.bpm}</div></div>
+    </div>`;
+  }).join('\n');
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${seed.name} — ${seed.market}</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"><style>${BASE_CSS}body{background:#06060b;color:#fff}.wave-bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}.wave-bg canvas{position:absolute;inset:0}.track-row{display:flex;align-items:center;gap:20px;padding:22px 28px;border-bottom:1px solid #111;cursor:pointer;transition:all .35s cubic-bezier(.16,1,.3,1);position:relative;z-index:2}.track-row:hover{background:${seed.primary}06;padding-left:44px}.track-row .play-btn{width:42px;height:42px;border-radius:50%;border:2px solid ${seed.primary};display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;color:${seed.primary}}.track-row:hover .play-btn{background:${seed.primary};color:#fff;transform:scale(1.05)}.track-num{width:24px;text-align:center;font-size:13px;color:#444;font-family:'JetBrains Mono',monospace;flex-shrink:0}.track-row:hover .track-num{color:${seed.primary}}.genre-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:600;letter-spacing:.03em}.material-symbols-rounded{font-family:'Material Symbols Rounded'!important;vertical-align:middle}@media(max-width:640px){.track-row{gap:12px;padding:16px}}</style></head><body><div class="wave-bg"><canvas id="waveCanvas"></canvas></div><main style="position:relative;z-index:2;max-width:700px;margin:0 auto;padding:80px 24px"><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px"><div><div style="font-size:11px;color:#666;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;font-weight:600">Sound Library</div><h1 style="font-size:clamp(28px,5vw,40px);font-weight:900;letter-spacing:-.03em;line-height:1">${seed.name}</h1></div><div style="font-size:12px;color:#888;font-family:'JetBrains Mono',monospace">${seed.items.length} tracks</div></div><div style="border:1px solid #141414;border-radius:14px;overflow:hidden;background:#08080d">${items}</div></main><footer style="position:relative;z-index:2;border-top:1px solid #111;text-align:center;padding:20px;font-size:10px;color:#333;font-family:'JetBrains Mono',monospace">${seed.name} · Solana · ${seed.market}</footer><script>(function(){const c=document.getElementById('waveCanvas');c.width=window.innerWidth;c.height=window.innerHeight;const ctx=c.getContext('2d');let t=0;function draw(){ctx.fillStyle='#06060b';ctx.fillRect(0,0,c.width,c.height);for(let i=0;i<5;i++){ctx.beginPath();const freq=0.003+i*0.002;const amp=30+i*15;const phase=i*1.2;const y0=c.height*(.6+i*.08);ctx.moveTo(0,y0);for(let x=0;x<c.width;x+=2){const y=y0+Math.sin(x*freq+t+phase)*amp+Math.cos(x*freq*.7+t)*amp*.4;ctx.lineTo(x,y)}ctx.strokeStyle='#8b5cf6'+(10+i*4).toString(16);ctx.lineWidth=1.5;ctx.stroke()}t+=0.008;requestAnimationFrame(draw)}draw();window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight})})();</script></body></html>`;
+}
+
+// ==================== LAYOUT: EXHIBIT ====================
+function renderExhibit(seed) {
+  const feature = seed.feature_article || {};
+  const related = (seed.related_articles || []).map(r => `<a href="#" style="text-decoration:none;color:inherit;display:block"><div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:6px">${r.title}</div><div style="font-size:12px;color:#777">${r.excerpt}</div></a>`).join('\n');
+
+  const items = seed.items.map((item, i) => `<div class="article-card fade-up" style="animation-delay:${(i*0.06).toFixed(2)}s"><img src="${item.image}" alt="" crossorigin="anonymous"><div class="caption"><div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:6px">${item.title}</div><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;color:#888">${item.creator}</span><span style="font-size:12px;font-weight:700;color:${seed.primary};font-family:'JetBrains Mono',monospace">${item.price}</span></div></div></div>`).join('\n');
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${seed.name} — ${seed.market}</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"><style>${BASE_CSS}body{background:#0d0d0d;color:#e0d8cc}.cover{position:relative;height:95vh;min-height:500px;overflow:hidden;display:flex;align-items:flex-end}.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.4) saturate(.5)}.cover-gradient{position:absolute;inset:0;background:linear-gradient(to top,#0d0d0d 0%,transparent 40%,#0d0d0d50 100%)}.cover-text{position:relative;z-index:2;padding:64px 56px;max-width:800px}.article-card{position:relative;overflow:hidden;transition:transform .3s}.article-card:hover{transform:translateY(-4px)}.article-card img{width:100%;height:240px;object-fit:cover;display:block}.article-card .caption{padding:16px;background:#141414}.pull-quote{border-left:2px solid ${seed.primary};padding:20px 28px;margin:32px 0;font-family:'Playfair Display',serif;font-size:22px;font-style:italic;line-height:1.4;color:#bbb}.material-symbols-rounded{font-family:'Material Symbols Rounded'!important;vertical-align:middle}@media(max-width:640px){.cover-text{padding:40px 24px}.article-card img{height:180px}.pull-quote{font-size:18px;padding:16px 20px}}</style></head><body><div class="cover"><img class="cover-img" src="${seed.hero_image}" alt="" crossorigin="anonymous"><div class="cover-gradient"></div><div class="cover-text fade-up"><div style="width:48px;height:2px;background:${seed.primary};margin-bottom:28px"></div><div style="font-size:10px;font-weight:600;letter-spacing:.12em;color:${seed.primary};text-transform:uppercase;margin-bottom:18px">Vol. IV — Summer 2026</div><h1 style="font-family:'Playfair Display',serif;font-size:clamp(44px,9vw,80px);font-weight:900;line-height:.88;color:#fff">${seed.name}</h1><p style="font-family:'Playfair Display',serif;font-size:18px;color:#aaa;max-width:400px;margin-top:16px;font-style:italic;line-height:1.5">${seed.tagline}</p></div></div><main style="max-width:1100px;margin:0 auto;padding:0 24px 80px"><section style="padding:80px 0 40px"><div style="font-size:10px;color:${seed.primary};letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:600">Feature</div><h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,36px);font-weight:900;line-height:1.1;margin-bottom:20px;color:#fff">${feature.title}</h2><div style="font-size:13px;color:#777;margin-bottom:28px">By ${feature.author} · ${feature.read_time} · ${feature.date}</div><p style="font-size:15px;color:#999;line-height:1.8;max-width:680px">${feature.body}</p><div class="pull-quote">${feature.pull_quote}</div><a href="#" style="display:inline-flex;align-items:center;gap:6px;color:${seed.primary};font-size:13px;font-weight:600;margin-top:16px;text-decoration:none;border-bottom:1px solid ${seed.primary}40;padding-bottom:2px">Continue reading <span class="material-symbols-rounded" style="font-size:16px">arrow_forward</span></a></section><section style="padding:40px 0"><div style="font-size:10px;color:${seed.primary};letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Current Collection</div><h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:24px">On View</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px">${items}</div></section><section style="padding:40px 0;border-top:1px solid #1a1a1a"><div style="font-size:10px;color:${seed.primary};letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;font-weight:600">Related Reading</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px">${related}</div></section></main><footer style="border-top:1px solid #1a1a1a;text-align:center;padding:32px;font-size:11px;color:#444;font-family:'JetBrains Mono',monospace">${seed.name} Journal · Vol. IV · Summer 2026 · Solana</footer></body></html>`;
+}
+
+// ==================== LAYOUT: GUILD ====================
+function renderGuild(seed) {
+  const stats = seed.stats || {};
+  const tiers = seed.tiers.map((tier, i) => {
+    const featured = tier.featured;
+    const btnStyle = featured ? `background:linear-gradient(135deg,${seed.primary},${seed.accent});border:none;color:#0a0908;font-weight:700` : 'border:1px solid #3a3020;color:#8b7355;font-weight:600';
+    const cardClass = featured ? 'tier-card fade-up featured' : 'tier-card fade-up';
+    const benefits = tier.benefits.map(b => `<div style="display:flex;align-items:center;gap:8px"><span style="color:${seed.primary}"><span class="material-symbols-rounded" style="font-size:16px">check</span></span>${b}</div>`).join('\n');
+    const iconBg = featured ? `background:linear-gradient(135deg,#3a2a10,#4a3520);color:${seed.primary}` : 'background:#2a2418;color:#8b7355';
+    return `<div class="${cardClass}" style="animation-delay:${(i*0.1).toFixed(2)}s"><div class="tier-icon" style="${iconBg}"><span class="material-symbols-rounded" style="font-size:28px">${tier.icon}</span></div><div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:${seed.primary};margin-bottom:12px">${tier.title}</div><div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:900;color:${seed.primary};margin-bottom:4px">${tier.price}</div><div style="font-size:11px;color:#6b5f50;margin-bottom:24px">${tier.subtitle}</div><div style="width:40px;height:2px;background:${seed.primary}40;margin:0 auto 24px"></div><div style="text-align:left;font-size:13px;color:#8b7d6b;line-height:2">${benefits}</div><a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:24px;padding:12px 24px;${btnStyle};border-radius:4px;font-size:13px;text-decoration:none;transition:all .2s">${featured?'Take the Oath':'Swear Fealty'}</a></div>`;
+  }).join('\n');
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${seed.name} — ${seed.market}</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"><style>${BASE_CSS}body{background:#0a0908;color:#c4b5a5}.bg-texture{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 15 L45 15 L38 22 L41 32 L30 26 L19 32 L22 22 L15 15 L25 15 Z' fill='%23d4a574'/%3E%3C/svg%3E");background-size:80px 80px}@keyframes ember{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:.8;transform:translateY(-4px)}}.tier-card{position:relative;background:linear-gradient(180deg,#1a1510,#11100a);border:1px solid #2a2418;border-radius:6px;padding:40px 32px;text-align:center;transition:all .4s cubic-bezier(.16,1,.3,1);overflow:hidden}.tier-card::before{content:'';position:absolute;inset:0;border:1px solid ${seed.primary};border-radius:6px;opacity:0;transition:opacity .4s;pointer-events:none}.tier-card:hover{transform:translateY(-6px);border-color:#3a3020}.tier-card:hover::before{opacity:.15}.tier-card.featured{border-color:${seed.primary}30;background:linear-gradient(180deg,#1f1a12,#151108)}.tier-card.featured::before{opacity:.12}.tier-icon{width:56px;height:56px;margin:0 auto 20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px}.ember{display:inline-block;animation:ember 2s ease-in-out infinite}.ember:nth-child(2){animation-delay:.4s}.ember:nth-child(3){animation-delay:.8s}.material-symbols-rounded{font-family:'Material Symbols Rounded'!important;vertical-align:middle}@media(max-width:768px){.tier-card{padding:32px 24px}}</style></head><body><div class="bg-texture"></div><main style="position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:80px 24px"><div style="text-align:center;margin-bottom:64px"><div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px"><span class="ember" style="font-size:14px"><span class="material-symbols-rounded" style="font-size:inherit;color:${seed.primary}">local_fire_department</span></span><span class="ember" style="font-size:10px"><span class="material-symbols-rounded" style="font-size:inherit;color:${seed.primary}">local_fire_department</span></span><span class="ember" style="font-size:14px"><span class="material-symbols-rounded" style="font-size:inherit;color:${seed.primary}">local_fire_department</span></span></div><h1 style="font-family:'Playfair Display',serif;font-size:clamp(40px,8vw,68px);font-weight:900;letter-spacing:-.02em;line-height:1;color:${seed.primary};margin-bottom:12px">${seed.name}</h1><p style="font-size:16px;color:#7a6e5e;max-width:500px;margin:0 auto;line-height:1.6">${seed.tagline}</p><div style="width:40px;height:2px;background:${seed.primary}40;margin:28px auto 0"></div></div><div style="max-width:600px;margin:0 auto 64px;text-align:center"><p style="font-size:14px;color:#6b5f50;line-height:1.8;font-style:italic">${seed.subtitle}</p></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:stretch">${tiers}</div><div style="margin-top:64px;padding:40px;background:#11100a;border:1px solid #2a2418;border-radius:6px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:24px;text-align:center"><div><div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:${seed.primary}">${stats.members}</div><div style="font-size:11px;color:#6b5f50;margin-top:4px;letter-spacing:.05em">Members sworn</div></div><div><div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:${seed.primary}">${stats.treasury}</div><div style="font-size:11px;color:#6b5f50;margin-top:4px;letter-spacing:.05em">Treasury held</div></div><div><div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:900;color:${seed.primary}">${stats.commissioned}</div><div style="font-size:11px;color:#6b5f50;margin-top:4px;letter-spacing:.05em">Works commissioned</div></div></div></main><footer style="position:relative;z-index:2;border-top:1px solid #1f1a12;text-align:center;padding:28px;font-size:11px;color:#4a3f30;font-family:'JetBrains Mono',monospace">${seed.name} · Solana · Established 2026</footer></body></html>`;
+}
+
+// ==================== HELPERS ====================
+function generateSparkline(color) {
+  const points = [];
+  for (let i = 0; i < 15; i++) points.push(Math.floor(Math.random() * 24));
+  const max = Math.max(...points);
+  const path = points.map((v, i) => {
+    const x = (i / (points.length - 1)) * 80;
+    const y = 28 - (v / max) * 26;
+    return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  return `<svg viewBox="0 0 80 28"><path d="${path}" fill="none" stroke="${color}" stroke-width="1.8"/></svg>`;
+}
+
+// ==================== ROUTER ====================
+const renderers = { swap: renderSwap, veredito: renderVeredito, wave: renderWave, exhibit: renderExhibit, guild: renderGuild };
+
+const render = renderers[seed.layout];
+if (!render) { console.error(`Unknown layout: ${seed.layout}`); process.exit(1); }
+
+console.log(render(seed));

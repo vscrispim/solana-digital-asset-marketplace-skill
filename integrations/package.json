@@ -1,0 +1,14 @@
+{
+  "name": "solana-marketplace-integrations",
+  "private": true,
+  "dependencies": {
+    "@solana/pay": "^0.2.0",
+    "@solana/spl-token": "^0.4.0",
+    "@solana/web3.js": "^1.90.0",
+    "@supabase/supabase-js": "^2.40.0"
+  },
+  "scripts": {
+    "setup": "cp .env.example .env && echo 'Edit .env with your keys'",
+    "dev": "echo 'Run your pages via a local server: npx serve examples/'"
+  }
+}

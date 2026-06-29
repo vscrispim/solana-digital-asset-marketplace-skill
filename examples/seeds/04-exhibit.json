@@ -1,0 +1,36 @@
+{
+  "slug": "exhibit",
+  "name": "Exhibit",
+  "tagline": "A journal of digital art, on-chain provenance, and the creators redefining ownership.",
+  "subtitle": "Curated works with verifiable provenance via Solana Token Extensions. Perpetual royalties enforced at the protocol level.",
+  "market": "Editorial Art Magazine",
+  "layout": "exhibit",
+  "motion": {"enabled": true, "type": "parallax"},
+  "icon_style": "rounded",
+  "primary": "#d4a574",
+  "accent": "#d4a574",
+  "bg": "#0d0d0d",
+  "theme": "Magazine editorial, Playfair Display serif, full-bleed cover, feature article with pull quotes, drop caps, related reading links, no navbar, no badges",
+  "hero_image": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1400&fit=crop",
+  "feature_article": {
+    "title": "The New Provenance: How Solana Token Extensions Are Changing Digital Ownership",
+    "author": "Clara Meyer",
+    "read_time": "12 min read",
+    "date": "Jun 24, 2026",
+    "body": "Every digital artwork now carries its full creation record, from the moment a brush hits a tablet to the final sale on a collector's shelf. Token Extensions on Solana make this possible without smart contract overhead.",
+    "pull_quote": "The blockchain no longer just records who owns what. It records how it was made, who influenced it, and what it means."
+  },
+  "related_articles": [
+    {"title": "Why Royalties Still Matter in 2026", "excerpt": "How perpetual creator fees are reshaping gallery economics on Solana."},
+    {"title": "From Studio to Chain: A Painter's Migration", "excerpt": "One traditional artist's journey from canvas to compressed NFT."},
+    {"title": "The Collector's Guide to Token Extensions", "excerpt": "What every serious collector should verify before purchasing."}
+  ],
+  "items": [
+    {"title": "Layers of Perception", "creator": "Fe Nunes", "price": "1.2 SOL", "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&fit=crop"},
+    {"title": "Boundary States", "creator": "Tulio Rosa", "price": "0.8 SOL", "image": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&fit=crop"},
+    {"title": "Surrounding Field", "creator": "Clara Meyer", "price": "0.5 SOL", "image": "https://images.unsplash.com/photo-1511376777868-611b54f68947?w=600&fit=crop"},
+    {"title": "Digital Genesis", "creator": "Ana Code", "price": "1.5 SOL", "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&fit=crop"},
+    {"title": "Imaginary Maps", "creator": "Rafael Cart", "price": "0.8 SOL", "image": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&fit=crop"},
+    {"title": "Neon Architecture", "creator": "Studio Forma", "price": "1.0 SOL", "image": "https://images.unsplash.com/photo-1511376777868-611b54f68947?w=600&fit=crop"}
+  ]
+}

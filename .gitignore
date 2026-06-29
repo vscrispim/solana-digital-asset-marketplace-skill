@@ -17,3 +17,6 @@ coverage/
 
 # Logs
 *.log
+
+# Dependencies
+node_modules/

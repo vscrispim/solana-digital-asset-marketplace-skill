@@ -1,0 +1,33 @@
+{
+  "slug": "veredito",
+  "name": "Veredito",
+  "tagline": "Stake on outcomes. Oracle-resolved prediction markets on Solana with no counterparty risk.",
+  "market": "Prediction Markets",
+  "layout": "veredito",
+  "motion": {"enabled": true, "type": "subtle_pulse"},
+  "icon_style": "rounded",
+  "primary": "#2563eb",
+  "accent": "#22c55e",
+  "bg": "#f7f8fa",
+  "theme": "Kalshi/Sportingbet, clean white cards, probability bars, YES/NO odds, category tabs, no navbar, no badges",
+  "categories": ["All markets", "Crypto", "Sports", "Politics", "Tech"],
+  "columns": [
+    {
+      "title": "Active Markets",
+      "color": "#22c55e",
+      "items": [
+        {"title": "Solana exceeds 5M DAU by Q4 2026?", "probability": "62% YES", "stake": "1.2 SOL", "creator": "@onchaindata", "extra": "14 days left · 234 stakers", "odds_yes": "0.62 SOL", "odds_no": "0.38 SOL"},
+        {"title": "Solana Pay adopted by 5,000+ merchants?", "probability": "78% YES", "stake": "2.0 SOL", "creator": "@paytracker", "extra": "21 days left · 567 stakers", "odds_yes": "0.78 SOL", "odds_no": "0.22 SOL"},
+        {"title": "Eclipse L2 captures highest TVL in Q3?", "probability": "Multiple outcomes", "stake": "0.8 SOL", "creator": "@defidata", "extra": "30 days left · 189 stakers", "outcomes": ["Eclipse 35%", "Neon 25%", "Nitro 25%", "Sonic 15%"]}
+      ]
+    },
+    {
+      "title": "Recently Resolved",
+      "color": "#6b7280",
+      "items": [
+        {"title": "Breakpoint 2026 exceeds 10K attendees?", "probability": "YES · 98% correct", "stake": "3.4 SOL paid", "creator": "@eventdata", "extra": "Settled Jun 15 · Oracle: Switchboard", "resolved": "yes"},
+        {"title": "Firedancer ships to mainnet in 2026?", "probability": "NO · 73% predicted correctly", "stake": "1.1 SOL paid", "creator": "@devtracker", "extra": "Settled Apr 2 · Oracle: Pyth", "resolved": "no"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "swap",
+  "name": "Swap",
+  "tagline": "Route SPL tokens across Solana liquidity pools with real-time pricing, aggregated depth, and minimal slippage.",
+  "subtitle": "Terminal-grade DEX aggregator. Jupiter, Raydium, Orca, OpenBook, Meteora DLMM.",
+  "market": "DeFi Terminal",
+  "layout": "swap",
+  "motion": {"enabled": true, "type": "gradient_pulse"},
+  "icon_style": "rounded",
+  "primary": "#00ff41",
+  "accent": "#ff6b35",
+  "bg": "#000000",
+  "theme": "green terminal, JetBrains Mono, dark #000, no navbar, no badges, token coin icons from CoinGecko",
+  "items": [
+    {"title": "SOL / USDC", "subtitle": "Jupiter", "price": "142.83", "change": "+2.1", "extra": "slip 0.5% · vol $2.4M", "image": "https://assets.coingecko.com/coins/images/4128/small/solana.png", "sprite_color": "#00ff41"},
+    {"title": "BONK / SOL", "subtitle": "Raydium", "price": "0.000042", "change": "-3.8", "extra": "slip 1.2% · vol $890K", "image": "https://assets.coingecko.com/coins/images/28600/small/bonk.jpg", "sprite_color": "#ff6b35"},
+    {"title": "PYTH / USDC", "subtitle": "Orca", "price": "0.2841", "change": "+0.9", "extra": "slip 0.3% · vol $1.8M", "image": "https://assets.coingecko.com/coins/images/31924/small/pyth.png", "sprite_color": "#a78bfa"},
+    {"title": "RAY / SOL", "subtitle": "OpenBook", "price": "0.0246", "change": "+5.2", "extra": "slip 0.8% · vol $3.1M", "image": "https://assets.coingecko.com/coins/images/13928/small/raydium.png", "sprite_color": "#f59e0b"},
+    {"title": "JTO / USDC", "subtitle": "Meteora", "price": "2.892", "change": "-1.4", "extra": "slip 0.6% · vol $1.2M", "image": "https://assets.coingecko.com/coins/images/33228/small/jito.png", "sprite_color": "#3b82f6"}
+  ]
+}

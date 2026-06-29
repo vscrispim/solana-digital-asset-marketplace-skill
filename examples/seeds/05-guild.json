@@ -1,0 +1,41 @@
+{
+  "slug": "guild",
+  "name": "The Guild",
+  "tagline": "A fellowship of creators who own their craft. Revenue shared. Decisions voted. Allegiance recorded on Solana.",
+  "subtitle": "In the old world, guilds protected artisans from lords and merchants. In ours, the chain protects creators from platforms.",
+  "market": "Creator Collective",
+  "layout": "guild",
+  "motion": {"enabled": true, "type": "reveal_stagger"},
+  "icon_style": "rounded",
+  "primary": "#d4a574",
+  "accent": "#8b6914",
+  "bg": "#0a0908",
+  "theme": "Medieval fantasy guild, stone/castle aesthetic, ember animations, Playfair Display serif headers, tier cards with border glow, stats banner, no navbar, no badges",
+  "stats": {"members": 247, "treasury": "1,240 SOL", "commissioned": 89},
+  "tiers": [
+    {
+      "title": "Squire",
+      "price": "0.5 SOL",
+      "subtitle": "Monthly tribute",
+      "icon": "shield",
+      "benefits": ["Access to the Great Hall", "Voting rights on proposals", "Early access to new works", "5 claims per moon cycle"],
+      "featured": false
+    },
+    {
+      "title": "Knight",
+      "price": "1.2 SOL",
+      "subtitle": "Annual oath",
+      "icon": "swords",
+      "benefits": ["All Squire rights", "5% share of the treasury", "Curate the collection", "Unlimited claims", "Seat at the Round Table"],
+      "featured": true
+    },
+    {
+      "title": "Lord",
+      "price": "3.0 SOL",
+      "subtitle": "Perpetual charter",
+      "icon": "crown",
+      "benefits": ["All Knight rights", "12% share of the treasury", "Co-authorship on works", "Private commission rights", "Veto power on charters"],
+      "featured": false
+    }
+  ]
+}
