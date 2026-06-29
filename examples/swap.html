@@ -43,7 +43,8 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
 
 .token-icon{width:40px;height:40px;border-radius:50%;flex-shrink:0;box-shadow:0 0 20px rgba(0,212,255,.15)}
 
-.pill{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid;font-family:'JetBrains Mono',monospace}
+.pill{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid;font-family:'JetBrains Mono',monospace;display:inline-flex;align-items:center;gap:5px}
+.pill-icon{width:14px;height:14px;border-radius:3px;flex-shrink:0}
 
 @media(max-width:768px){
   .desktop-layout{flex-direction:column}
@@ -109,7 +110,7 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
         Review Swap
       </button>
       <div style="display:flex;justify-content:space-between;margin-top:16px;font-size:11px;color:#556;font-family:'JetBrains Mono',monospace">
-        <span>Route: Jupiter</span><span>Fee: 0.002 SOL</span><span>Impact: &lt;0.01%</span>
+        <span><img src="https://jup.ag/svg/jupiter-logo.png" alt="" crossorigin="anonymous" style="width:12px;height:12px;border-radius:2px;vertical-align:middle;margin-right:3px" onerror="this.style.display='none'">Jupiter</span><span>Fee: 0.002 SOL</span><span>Impact: &lt;0.01%</span>
       </div>
     </div>
 
@@ -126,7 +127,7 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <span style="font-weight:700;font-size:15px;color:#fff;font-family:'JetBrains Mono',monospace">SOL / USDC</span>
-              <span class="pill" style="color:#00d4ff;border-color:rgba(0,212,255,.2);background:rgba(0,212,255,.05)">Jupiter</span>
+              <span class="pill" style="color:#00d4ff;border-color:rgba(0,212,255,.2);background:rgba(0,212,255,.05)"><img class="pill-icon" src="https://jup.ag/svg/jupiter-logo.png" alt="" crossorigin="anonymous" onerror="this.style.display='none'">Jupiter</span>
             </div>
             <div style="font-size:11px;color:#556;font-family:'JetBrains Mono',monospace">slip 0.5% · 24h $2.4M · Pool 1.8M SOL</div>
           </div>
@@ -141,7 +142,7 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <span style="font-weight:700;font-size:15px;color:#fff;font-family:'JetBrains Mono',monospace">BONK / SOL</span>
-              <span class="pill" style="color:#f59e0b;border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)">Raydium</span>
+              <span class="pill" style="color:#f59e0b;border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)"><img class="pill-icon" src="https://raydium.io/favicon.ico" alt="" crossorigin="anonymous" onerror="this.style.display='none'">Raydium</span>
             </div>
             <div style="font-size:11px;color:#556;font-family:'JetBrains Mono',monospace">slip 1.2% · 24h $890K · Pool 42B BONK</div>
           </div>
@@ -156,7 +157,7 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <span style="font-weight:700;font-size:15px;color:#fff;font-family:'JetBrains Mono',monospace">PYTH / USDC</span>
-              <span class="pill" style="color:#7c3aed;border-color:rgba(124,58,237,.2);background:rgba(124,58,237,.05)">Orca</span>
+              <span class="pill" style="color:#7c3aed;border-color:rgba(124,58,237,.2);background:rgba(124,58,237,.05)"><img class="pill-icon" src="https://www.orca.so/favicon.ico" alt="" crossorigin="anonymous" onerror="this.style.display='none'">Orca</span>
             </div>
             <div style="font-size:11px;color:#556;font-family:'JetBrains Mono',monospace">slip 0.3% · 24h $1.8M · Pool 8.2M PYTH</div>
           </div>
@@ -171,7 +172,7 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <span style="font-weight:700;font-size:15px;color:#fff;font-family:'JetBrains Mono',monospace">RAY / SOL</span>
-              <span class="pill" style="color:#22c55e;border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.05)">OpenBook</span>
+              <span class="pill" style="color:#22c55e;border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.05)"><span class="material-symbols-rounded" style="font-size:14px;font-variation-settings:'FILL'1">book</span>OpenBook</span>
             </div>
             <div style="font-size:11px;color:#556;font-family:'JetBrains Mono',monospace">slip 0.8% · 24h $3.1M · Pool 620K RAY</div>
           </div>
@@ -186,7 +187,7 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
               <span style="font-weight:700;font-size:15px;color:#fff;font-family:'JetBrains Mono',monospace">JTO / USDC</span>
-              <span class="pill" style="color:#3b82f6;border-color:rgba(59,130,246,.2);background:rgba(59,130,246,.05)">Meteora</span>
+              <span class="pill" style="color:#3b82f6;border-color:rgba(59,130,246,.2);background:rgba(59,130,246,.05)"><img class="pill-icon" src="https://coin-images.coingecko.com/coins/images/69110/thumb/meteora.png" alt="" crossorigin="anonymous" onerror="this.style.display='none'">Meteora</span>
             </div>
             <div style="font-size:11px;color:#556;font-family:'JetBrains Mono',monospace">slip 0.6% · 24h $1.2M · Pool 340K JTO</div>
           </div>
@@ -202,7 +203,7 @@ body{font-family:'Inter',sans-serif;background:#070b14;color:#e0e8f0;min-height:
 
   <!-- Stats Bar -->
   <div class="glass fade-up" style="display:flex;gap:40px;padding:20px 28px;margin-top:40px;justify-content:center;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:#667;animation-delay:.55s">
-    <div>Routes: <span style="color:#00d4ff;margin-left:6px">Jupiter · Raydium · Orca · OpenBook · Meteora DLMM</span></div>
+    <div>Routes: <span style="color:#00d4ff;margin-left:6px"><img src="https://jup.ag/svg/jupiter-logo.png" alt="" crossorigin="anonymous" style="width:13px;height:13px;border-radius:2px;vertical-align:middle;margin-right:2px" onerror="this.style.display='none'">Jupiter · <img src="https://raydium.io/favicon.ico" alt="" crossorigin="anonymous" style="width:13px;height:13px;border-radius:2px;vertical-align:middle;margin:0 2px" onerror="this.style.display='none'">Raydium · <img src="https://www.orca.so/favicon.ico" alt="" crossorigin="anonymous" style="width:13px;height:13px;border-radius:2px;vertical-align:middle;margin:0 2px" onerror="this.style.display='none'">Orca · <span class="material-symbols-rounded" style="font-size:13px;vertical-align:middle;font-variation-settings:'FILL'1">book</span>OpenBook · <img src="https://coin-images.coingecko.com/coins/images/69110/thumb/meteora.png" alt="" crossorigin="anonymous" style="width:13px;height:13px;border-radius:2px;vertical-align:middle;margin:0 2px" onerror="this.style.display='none'">Meteora DLMM</span></div>
     <div style="width:1px;background:rgba(255,255,255,.06)"></div>
     <div>Network: <span style="color:#00d4ff;margin-left:6px">Solana Mainnet</span></div>
     <div style="width:1px;background:rgba(255,255,255,.06)"></div>

@@ -12,7 +12,7 @@ Five projects, five completely different aesthetics. Same skill, different promp
 
 ### Nexus — DeFi DEX
 ![Nexus](examples/swap-preview.png)
-Glassmorphism dashboard with floating gradient orbs, frosted-glass swap widget, live token pairs with CoinGecko icons, and cyan-purple glow accents. Jupiter/Raydium/Orca/OpenBook/Meteora routing.
+Glassmorphism dashboard with floating gradient orbs, frosted-glass swap widget, live token pairs with CoinGecko icons, protocol logo routing badges (Jupiter, Raydium, Orca, OpenBook, Meteora), and cyan-purple glow accents.
 
 ### Veredito — Prediction Markets
 ![Veredito](examples/veredito-preview.png)
