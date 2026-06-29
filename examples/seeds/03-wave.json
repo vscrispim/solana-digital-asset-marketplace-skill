@@ -1,21 +1,20 @@
 {
   "slug": "wave",
   "name": "Wave",
-  "tagline": "License beats, samples, and stems with on-chain provenance. Every creator gets paid automatically.",
-  "subtitle": "Professional sound library with royalty terms enforced on Solana.",
+  "tagline": "Buy samples and stems from independent producers. Pay in SOL. Instant license delivery. Every license anchored on-chain.",
   "market": "Music Licensing",
   "layout": "wave",
-  "motion": {"enabled": true, "type": "waves"},
-  "icon_style": "rounded",
-  "primary": "#8b5cf6",
-  "accent": "#ec4899",
-  "bg": "#06060b",
-  "theme": "Tidal/Spotify-inspired, no hero, audio tracks with play buttons and prices, canvas wave motion, no navbar, no badges",
+  "motion": {"enabled": false, "type": "none"},
+  "icon_style": "filled",
+  "primary": "#1a1a1a",
+  "accent": "#c4ff0e",
+  "bg": "#fafaf9",
+  "theme": "Neobrutalist, bright off-white background, thick black borders, bold Space Grotesk typography, colored left accent stripes per track, high contrast, no rounded corners",
   "items": [
-    {"title": "Urban Drift", "creator": "@beatmaker", "price": "0.3 SOL", "bpm": "3:24 · 128 BPM", "genre": "Electronic", "genre_color": "#8b5cf6"},
-    {"title": "Neon Wires", "creator": "@synthlab", "price": "0.2 SOL", "bpm": "2:58 · 92 BPM", "genre": "Lo-fi", "genre_color": "#ec4899"},
-    {"title": "Deep Sequence", "creator": "@housemind", "price": "0.5 SOL", "bpm": "4:12 · 140 BPM", "genre": "House", "genre_color": "#f59e0b"},
-    {"title": "Silent Layer", "creator": "@ambientsound", "price": "0.15 SOL", "bpm": "5:01 · 76 BPM", "genre": "Ambient", "genre_color": "#10b981"},
-    {"title": "Bounce Theory", "creator": "@popproducer", "price": "0.4 SOL", "bpm": "3:06 · 110 BPM", "genre": "Pop", "genre_color": "#3b82f6"}
+    {"title": "Urban Drift", "creator": "@beatmaker", "price": "0.3 SOL", "bpm": "3:24 · 128 BPM", "genre": "Electronic", "genre_color": "#0047ff"},
+    {"title": "Neon Wires", "creator": "@synthlab", "price": "0.2 SOL", "bpm": "2:58 · 92 BPM", "genre": "Lo-fi", "genre_color": "#1a1a1a"},
+    {"title": "Deep Sequence", "creator": "@housemind", "price": "0.5 SOL", "bpm": "4:12 · 140 BPM", "genre": "House", "genre_color": "#ff2d95"},
+    {"title": "Silent Layer", "creator": "@ambientsound", "price": "0.15 SOL", "bpm": "5:01 · 76 BPM", "genre": "Ambient", "genre_color": "#1a1a1a"},
+    {"title": "Bounce Theory", "creator": "@popproducer", "price": "0.4 SOL", "bpm": "3:06 · 110 BPM", "genre": "Pop", "genre_color": "#0047ff"}
   ]
 }

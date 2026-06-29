@@ -1,12 +1,12 @@
 ---
 name: solana-digital-asset-marketplace
-description: Produces premium, production-grade landing pages from compact JSON seeds. Five distinct layouts: DeFi terminal with real token icons, prediction markets with oracle resolution, music licensing with animated waves, magazine editorial art gallery, and medieval fantasy guild membership. Supports motion graphics, Google Material Icons, and wiring for Supabase, Solana Pay, and wallet connect. One-prompt capable. Model-agnostic.
-version: 5.0.0
+description: Generative skill that produces unique, production-grade landing pages from compact JSON prompts. Each prompt generates an entirely original site — not a template variation. Covers DeFi, prediction markets, music licensing, editorial art, and membership platforms on Solana. Supports motion graphics, Google Material Icons, and integrations for Supabase, Solana Pay, and wallet connect. Model-agnostic.
+version: 5.1.0
 author: Superteam Brasil
 license: MIT
 metadata:
   hermes:
-    tags: [solana, marketplace, defi, dex, prediction-market, music, art-gallery, membership, seeds, html, motion, google-icons, landing-page, hackathon]
+    tags: [solana, generative, marketplace, defi, prediction-market, music, art-gallery, membership, seeds, html, motion, landing-page, hackathon]
     related_skills: [solanabr/auditor]
 ---
 
@@ -14,103 +14,138 @@ metadata:
 
 ## Overview
 
-Generates fully self-contained HTML landing pages from JSON seeds. Five layouts with completely distinct aesthetics — zero repetition. No framework dependencies. Google Material Icons for decorative elements. CSS + canvas motion graphics. Functional integration modules for Supabase, Solana Pay, and wallet connect.
+A **generative design skill** — not a template picker. Each prompt produces a site with its own visual identity: unique layout, color system, typography, motion, and interaction patterns. The skill combines product strategy with frontend execution, producing self-contained HTML landing pages.
 
-**One-prompt capable.** Describe the project in one sentence and get a working landing page.
+The five projects in `examples/` demonstrate the range: a glassmorphism DEX dashboard, a dark data war room for prediction markets, a neobrutalist music platform, a serif editorial magazine, and a medieval fantasy guild. Every one came from a different prompt — same skill, completely different results.
 
-## Design rules (mandatory)
+**One-prompt capable.** Describe the project and get a working site.
 
-- **No navbar.** Landing pages have no top navigation bar, no logo, no site name. Content starts immediately.
-- **No security badges.** Pages are clean — no "Mainnet Guard", "Authority Lock", "Account Shield", or "Secret Vault" tags.
-- **Zero emojis.** No emoji characters anywhere.
+## Design principles
+
+- **Generative, not templated.** Each seed produces a new visual identity. No two sites feel alike.
+- **No navbar, no badges, no emojis.** Clean content-first pages.
 - **English text only.** All output in English.
-- **Dark premium palette.** Background #000 or near-black. Cards #0a0a0a. 2-3 accent colors max. Exception: veredito (light theme).
-- **Inter + JetBrains Mono fonts.** Monospace for data, Inter for body. Serif: Playfair Display or Georgia.
-- **Standalone HTML.** Single .html file. No React, no Tailwind CDN, no build step.
+- **Standalone HTML.** Single `.html` file. No React, no build step, no Tailwind CDN.
 - **Google Material Icons.** All icons via Google Fonts CDN. Material Symbols Rounded preferred.
-- **Verified images only.** Test image URLs before embedding. Use CoinGecko for token icons, Unsplash for photography.
-- **No external design references.** Never mention inspiration sites in output, docs, or code.
-- **Motion graphics optional.** Each seed accepts motion.enabled and motion.type.
+- **Verified images only.** Use CoinGecko for token icons, Unsplash for photography.
+- **Motion graphics optional.** Each seed accepts `motion.enabled` and `motion.type`.
 
-## Layouts
+## Projects built with this skill
 
-### swap — DeFi Terminal
-Green-on-black monospace terminal. Real token coin icons (SOL, BONK, PYTH, RAY, JTO via CoinGecko). SVG sparkline charts. Route badges for Jupiter, Raydium, Orca, OpenBook, Meteora. Gradient pulse background. No navbar. No badges.
-Best for: DEX, DeFi dashboards, trading terminals.
+The `examples/` directory contains five complete sites, each generated from a different prompt:
 
-### veredito — Prediction Markets
-Clean white/gray cards with probability bars. YES/NO odds in side panels. Category tabs (All, Crypto, Sports, Politics, Tech). Multi-outcome markets with stacked bars. Resolved markets with resolution stamps. No navbar. No badges.
-Best for: prediction markets, sports betting UIs, governance voting.
+| Project | Domain | Aesthetic |
+|---------|--------|-----------|
+| **Nexus** | DeFi DEX | Glassmorphism dashboard, cyan/purple glow, floating orbs, frosted-glass cards |
+| **Veredito** | Prediction markets | Dark data war room, amber accents, live ticker, stat sidebar, donut charts |
+| **Wave** | Music licensing | Neobrutalist, bold typography, thick borders, high contrast, bright accent stripes |
+| **Exhibit** | Art magazine | Editorial serif, full-bleed cover, drop caps, pull quotes, gold accents |
+| **Guild** | Membership/DAO | Medieval fantasy, ember fire, stone texture, tier cards, stats banner |
 
-### wave — Music Licensing
-No hero section. Track list with numbered rows, play buttons, genre tags, prices in SOL. Canvas wave animation background. Colored genre badges per track. Hover expansion on rows. No navbar. No badges.
-Best for: music platforms, sample libraries, audio licensing.
+Each site opens directly in any browser — no server, no build step.
 
-### exhibit — Editorial Art Magazine
-Full-bleed cover image. Feature article with pull quotes and drop caps. "On View" collection grid. Related reading links at bottom. Playfair Display serif typography. Gold (#d4a574) accent. Volume/date masthead. No navbar. No badges.
-Best for: art galleries, editorial sites, curated collections, portfolios.
+## Seed system
 
-### guild — Medieval Fantasy Membership
-Ember fire animations. Stone texture background. Tier cards: Squire, Knight, Lord. Featured middle tier with gold gradient CTA. Stats banner (members, treasury, commissions). Playfair Display headers. No navbar. No badges.
-Best for: creator memberships, DAO tiers, community passes, exclusive collectives.
+Seeds are compact JSON prompts (~30-60 lines) that encode the creative direction for a site. The skill interprets the seed and produces a fully rendered page.
 
-## Seed parameters
+### Seed parameters
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| slug | yes | URL-safe identifier |
-| name | yes | Project name (displayed in page content) |
-| tagline | yes | Main statement |
-| layout | yes | swap, veredito, wave, exhibit, or guild |
-| primary | yes | Brand color (hex) |
-| accent | no | Secondary color (hex) |
-| bg | yes | Background color (hex) |
-| motion.enabled | no | Enable motion graphics |
-| motion.type | no | gradient_pulse, subtle_pulse, waves, parallax, reveal_stagger |
-| icon_style | no | outlined, rounded, or filled |
-| items / columns / tiers | yes | Content (layout-specific) |
-| hero_image | no | Hero background image URL (exhibit) |
+| `slug` | yes | URL-safe identifier |
+| `name` | yes | Project name displayed on page |
+| `tagline` | yes | Main value statement |
+| `layout` | yes | Creative direction: swap, veredito, wave, exhibit, guild |
+| `primary` | yes | Primary brand color (hex) |
+| `accent` | no | Secondary color (hex) |
+| `bg` | yes | Background color (hex) |
+| `motion.enabled` | no | Enable motion graphics |
+| `motion.type` | no | gradient_pulse, subtle_pulse, waves, parallax, reveal_stagger |
+| `icon_style` | no | outlined, rounded, or filled |
+| `items` / `columns` / `tiers` | yes | Content — structure varies by creative direction |
+| `hero_image` | no | Hero background image URL (exhibit) |
+
+### Creative directions
+
+Each direction is a starting point, not a straitjacket. The same seed structure produces radically different results depending on the values:
+
+- **swap** → Trading interfaces: dashboards, DEX terminals, liquidity pools
+- **veredito** → Data-rich markets: predictions, governance, analytics dashboards
+- **wave** → Content platforms: music, samples, audio libraries, streaming
+- **exhibit** → Editorial: magazines, galleries, portfolios, curated collections
+- **guild** → Communities: memberships, DAOs, patron programs, collectives
 
 ## Integration keywords
 
 stripe, supabase, solana-pay, crossmint, helius, metaplex, resend, netlify, vercel
 
-## Default workflow
+## Style keywords for prompts
 
-1. Identify the project type and select the matching layout.
-2. Fill in the seed JSON with name, tagline, colors, content.
-3. Run generate.js to produce the HTML.
-4. For production: wire into integrations (Supabase for data, Solana Pay for payments).
-5. Deploy via Netlify/Vercel or serve static.
+Use these in prompts to guide the aesthetic:
+
+**Visual languages**: `glassmorphism`, `neobrutalist`, `editorial-serif`, `dark-dashboard`, `medieval-fantasy`, `data-war-room`, `clean-market`
+
+**Motion**: `gradient-pulse`, `subtle-pulse`, `waves`, `parallax`, `reveal-stagger`
+
+**Color systems**: `cyan-purple-glow`, `amber-on-slate`, `neon-on-brutalist`, `gold-serif`, `ember-stone`
+
+## Example prompts
+
+```
+Create a glassmorphism DeFi dashboard with a central swap widget,
+live token pairs, cyan and purple glow accents, frosted glass cards,
+and floating gradient orbs. Jupiter routing. Solana mainnet.
+```
+
+```
+Build a dark prediction market dashboard with amber accents,
+live ticker tape, stat sidebar with oracle feeds, category grid,
+multi-outcome markets with donut progress indicators.
+```
+
+```
+Design a neobrutalist music licensing platform — bright white background,
+thick black borders, bold Space Grotesk typography, colored left accent
+stripes per track, pay-in-SOL pricing. No rounded corners.
+```
 
 ## Routing
 
-Each layout is self-contained.
+Each creative direction targets a specific domain. Pick the closest one and adapt the seed:
 
-- **DeFi / Trading**: Use `swap` layout. Items array with title, subtitle, price, change, extra, image (CoinGecko URL), sprite_color.
-- **Prediction Markets**: Use `veredito` layout. Columns array with title, color, items[]. Items have title, probability, stake, creator, extra, odds_yes, odds_no. Optional multi-outcome support via outcomes[].
-- **Music / Audio**: Use `wave` layout. Items array with title, creator, price, bpm, genre, genre_color.
-- **Art / Editorial**: Use `exhibit` layout. Items array with title, creator, price, image. Optional feature_article and related_articles.
-- **Membership / Community**: Use `guild` layout. Tiers array with title, price, subtitle, icon (Material Symbol name), benefits[], featured. Optional stats.
+- **DeFi / Trading** → `swap` direction. Token pairs, swap widgets, routing badges, live pricing.
+- **Prediction Markets** → `veredito` direction. Oracle feeds, probability tracking, multi-outcome, resolved stamps.
+- **Music / Audio** → `wave` direction. Track listings, genre tagging, SOL pricing, license delivery.
+- **Art / Editorial** → `exhibit` direction. Magazine layouts, gallery grids, feature articles, serif typography.
+- **Membership / Community** → `guild` direction. Tier cards, lore, treasury stats, immersive atmosphere.
+
+## Default workflow
+
+1. Describe the project and audience in a prompt.
+2. The skill creates a seed JSON with the creative direction.
+3. `generate.js` produces the standalone HTML page.
+4. For production: wire integrations (Supabase, Solana Pay, wallet connect).
+5. Deploy via Netlify/Vercel or serve static.
 
 ## Verification checklist
 
+- [ ] Unique visual identity (not a template variation)
 - [ ] No navbar/header present
 - [ ] No security guard badges
 - [ ] All text in English
 - [ ] Zero emoji characters
-- [ ] Correct font stack (Inter, JetBrains Mono, Playfair Display)
 - [ ] Google Material Icons loaded
 - [ ] All img tags have crossorigin="anonymous"
-- [ ] Motion type matches layout
+- [ ] Motion type matches the creative direction
 - [ ] Standalone HTML (no framework)
-- [ ] Token icons use CoinGecko URLs (swap layout)
+- [ ] Token icons use CoinGecko URLs (DeFi projects)
 
 ## Output standards
 
-Every generated page is a **minimalist landing page** with:
+Every generated page is a **production-grade landing page** with:
+- Distinct visual identity tied to the creative direction
 - No navigation bar, no logo, no site name
-- Content area matching the layout
+- Content area matching the project domain
 - Footer with Solana attribution
 - No security badges or guard tags
 

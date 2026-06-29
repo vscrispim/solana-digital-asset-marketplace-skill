@@ -1,49 +1,83 @@
 # Solana Digital Media Marketplace Skill
 
-Product design skill for founders building DeFi terminals, prediction markets, music licensing platforms, art magazines, and creator guilds on Solana. Generates premium, production-grade landing pages from compact JSON seeds — five completely distinct aesthetics, zero repetition.
+**A generative design skill — not a template library.** Each prompt produces an entirely unique site with its own visual identity, color system, typography, motion, and interaction patterns. Built for founders, hackathon teams, and creators building on Solana.
 
 Superteam Brasil Solana AI Kit Skills Bounty.
 
-## Preview
+---
 
-### Swap — DeFi Terminal
-![Swap](examples/swap-preview.png)
-Green-on-black monospace terminal with real token coin icons (SOL, BONK, PYTH, RAY, JTO via CoinGecko), live SVG sparkline charts, and gradient pulse background.
+## Built with this skill
+
+Five projects, five completely different aesthetics. Same skill, different prompts.
+
+### Nexus — DeFi DEX
+![Nexus](examples/swap-preview.png)
+Glassmorphism dashboard with floating gradient orbs, frosted-glass swap widget, live token pairs with CoinGecko icons, and cyan-purple glow accents. Jupiter/Raydium/Orca/OpenBook/Meteora routing.
 
 ### Veredito — Prediction Markets
 ![Veredito](examples/veredito-preview.png)
-Clean white cards with probability bars, YES/NO odds panels, category tabs, multi-outcome stacked bars, oracle resolution stamps, and Switchboard/Pyth attribution.
+Dark data war room with live ticker tape, amber accent dashboard, oracle feed sidebar, multi-outcome markets with donut progress indicators, and resolved market stamps. Oracle-resolved. No counterparty risk.
 
 ### Wave — Music Licensing
 ![Wave](examples/wave-preview.png)
-Track list with numbered rows, play buttons, colored genre badges, SOL prices. Canvas wave animation background.
+Neobrutalist music platform — bright background, thick black borders, Space Grotesk typography, colored left accent stripes per track, bold high-contrast design. Pay in SOL, license instantly.
 
 ### Exhibit — Editorial Art Magazine
 ![Exhibit](examples/exhibit-preview.png)
-Full-bleed magazine cover with Playfair Display serif, feature article with pull quotes and drop caps, "On View" gallery grid, related reading section. Gold (#d4a574) accent.
+Full-bleed magazine cover with Playfair Display serif, feature article with pull quotes and drop caps, "On View" gallery grid, related reading section. Gold (#d4a574) accent. Editorial elegance.
 
 ### Guild — Medieval Fantasy Membership
 ![Guild](examples/guild-preview.png)
-Ember fire animations, stone texture background, tier cards (Squire/Knight/Lord), stats banner (members, treasury, commissions).
+Pulsing ember fire animations, stone texture background, tier cards (Squire 0.5 SOL, Knight 1.2 SOL featured, Lord 3.0 SOL), lore paragraph, treasury stats banner. Immersive fantasy aesthetic.
 
-## Quick start
+---
+
+## How it works
+
+```
+Your prompt → Seed JSON (creative direction) → generate.js → Standalone HTML
+```
+
+Describe what you want in plain language. The skill translates it into a compact JSON seed — colors, motion, content, domain — and `generate.js` produces a fully self-contained HTML page that opens in any browser. No framework. No build step.
+
+### Example prompts
+
+```
+Build a glassmorphism DeFi dashboard with live token pairs,
+cyan and purple glow accents, a central swap widget, and
+floating gradient orbs. Solana mainnet, Jupiter routing.
+```
+
+```
+Create a prediction market war room — dark dashboard with
+amber stats, live ticker, oracle sidebar, multi-outcome
+markets, and resolved stamps. Switchboard and Pyth oracles.
+```
+
+```
+Design a neobrutalist music licensing site — bright white,
+thick black borders, bold typography, per-track accent stripes,
+pay-in-SOL with instant license delivery.
+```
+
+---
+
+## Quick start prompts
 
 ```bash
-git clone https://github.com/superteamBR/solana-digital-asset-marketplace-skill.git
+git clone https://github.com/vscrispim/solana-digital-asset-marketplace-skill.git
 cd solana-digital-asset-marketplace-skill
 chmod +x install.sh && ./install.sh
 ```
 
-## Quick start prompts
-
-Open any example directly:
+Open any project directly:
 
 ```bash
-open examples/swap.html       # DeFi terminal
-open examples/veredito.html    # Prediction markets
-open examples/wave.html        # Music platform
-open examples/exhibit.html     # Art magazine
-open examples/guild.html       # Medieval guild
+open examples/swap.html       # Nexus — DeFi dashboard
+open examples/veredito.html    # Veredito — prediction markets
+open examples/wave.html        # Wave — music licensing
+open examples/exhibit.html     # Exhibit — art magazine
+open examples/guild.html       # Guild — membership
 ```
 
 Generate from a seed:
@@ -52,87 +86,52 @@ Generate from a seed:
 node examples/generate.js examples/seeds/01-swap.json
 ```
 
-Pipeline: single prompt or Design.md spec to a working landing page in seconds.
+---
 
-## How the skill works
+## Seed system
 
-```
-JSON Seed (~30-60 lines)
-       |
-generate.js (v5.0.0, 5 renderers)
-       |
-Landing Page HTML (self-contained, opens in any browser)
-```
+Seeds are compact JSON files (~30-60 lines) that encode a creative direction. The skill interprets the seed and produces a unique site.
 
-### Seed parameters
-
-These parameters control page generation. Use them in prompts.
+### Core parameters
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `slug` | string | yes | URL-safe identifier |
 | `name` | string | yes | Project name |
 | `tagline` | string | yes | Main statement |
-| `layout` | string | yes | swap, veredito, wave, exhibit, or guild |
+| `layout` | string | yes | Creative direction: swap, veredito, wave, exhibit, guild |
 | `primary` | hex | yes | Primary brand color |
 | `accent` | hex | no | Secondary accent color |
 | `bg` | hex | yes | Page background color |
 | `motion.enabled` | boolean | no | Enable motion graphics |
 | `motion.type` | string | no | gradient_pulse, subtle_pulse, waves, parallax, reveal_stagger |
 | `icon_style` | string | no | Google Material Icons style |
-| `items` | array | yes | Content items (varies by layout) |
-| `hero_image` | URL | no | Hero background (exhibit layout) |
+| `items` | array | yes | Content items — structure varies by creative direction |
+| `hero_image` | URL | no | Hero background (exhibit) |
 
-### Layout selection guide
+### Creative directions
 
-| Layout | Best for | Visual style |
-|--------|----------|-------------|
-| `swap` | DEX, DeFi, trading | Green terminal, CoinGecko icons, sparklines, monospace |
-| `veredito` | Prediction, betting, voting | White cards, probability bars, YES/NO odds, categories |
-| `wave` | Music, audio, samples | Track list, play buttons, genre tags, canvas waves |
-| `exhibit` | Art, editorial, portfolio | Magazine cover, serif, pull quotes, article grid |
-| `guild` | Membership, DAO, community | Medieval stone, embers, tier cards, stats banner |
+| Direction | Domain | Visual range |
+|-----------|--------|-------------|
+| `swap` | DeFi, trading, dashboards | Glassmorphism, terminal, data-dense, neon |
+| `veredito` | Predictions, governance, analytics | Dark dashboard, amber accents, chart-rich, war room |
+| `wave` | Music, audio, content platforms | Neobrutalist, editorial, bold, high-contrast |
+| `exhibit` | Art, magazines, portfolios | Serif, full-bleed, editorial, elegant |
+| `guild` | Memberships, DAOs, communities | Fantasy, immersive, tiered, atmospheric |
 
-### Keywords for prompts
+### Prompt keywords
 
-**Layout**: `swap`, `veredito`, `wave`, `exhibit`, `guild`
+**Visual languages**: `glassmorphism`, `neobrutalist`, `editorial-serif`, `dark-dashboard`, `medieval-fantasy`, `data-war-room`, `clean-market`
 
 **Motion**: `gradient-pulse`, `subtle-pulse`, `waves`, `parallax`, `reveal-stagger`
 
 **Integrations**: `stripe`, `supabase`, `solana-pay`, `crossmint`, `helius`, `metaplex`
 
-**Style**: `dark-terminal`, `clean-market`, `audio-platform`, `editorial-magazine`, `medieval-guild`
-
-### Example prompt
-
-```
-Create a DeFi swap page with green-on-black terminal aesthetic,
-5 SOL trading pairs with sparkline charts and CoinGecko token icons,
-Jupiter routing, gradient pulse motion.
-```
-
-Produces a fully rendered `swap.html`.
-
-## Five layouts — zero repetition
-
-### 1. Swap — DeFi Terminal
-Real token coin icons from CoinGecko (SOL, BONK, PYTH, RAY, JTO). Terminal window with macOS-style traffic lights. Route badges for Jupiter, Raydium, Orca, OpenBook, Meteora DLMM. Green gradient pulse background.
-
-### 2. Veredito — Prediction Markets
-Category tabs at top. YES/NO odds in side panel. Probability bars on each card. Multi-outcome markets with stacked colored bars. Resolved section with YES/NO resolution stamps and oracle attribution (Switchboard, Pyth).
-
-### 3. Wave — Music Licensing
-No hero. Just a track list with 01-05 numbering, circular play buttons that fill on hover, genre tags with per-genre colors, SOL prices, BPM, and duration. Canvas wave animation in background.
-
-### 4. Exhibit — Editorial Art Magazine
-95vh cover image with gradient overlay. Volume/date masthead. Feature article with serif headline, byline metadata, drop cap paragraph, pull quote, and "Continue reading" link. 6-piece gallery grid. Related reading sidebar.
-
-### 5. Guild — Medieval Fantasy Membership
-Pulsing ember fire animations at top. SVG stone texture background. Three tier cards (Squire 0.5 SOL, Knight 1.2 SOL featured, Lord 3.0 SOL) with material icons (shield, swords, crown). Lore paragraph. Stats banner at bottom.
+---
 
 ## Integrations
 
-Functional code in `integrations/`:
+Functional modules in `integrations/`:
 
 | File | Service |
 |------|---------|
@@ -142,35 +141,33 @@ Functional code in `integrations/`:
 | `api.js` | Serverless API routes for assets, purchases, payment verification |
 | `.env.example` | Environment variable template |
 
-## Solana programs referenced
-
-SPL Token, SPL Memo, SPL Account Compression, Solana Pay, Solana Actions and Blinks, Solana Mobile, Metaplex (Token Metadata, Candy Machine).
-
-Official sources only: docs.solana.com, solana.com, solana.foundation, github.com/solana-labs, github.com/solana-foundation, superteamBR.
-
-## Validation
-
-```bash
-python3 scripts/validate.py
-```
+---
 
 ## Why this belongs in Solana AI Kit
 
-Built exclusively on official Solana sources and real network data. References pools (Jupiter, Raydium, Orca, Meteora DLMM), validators (Jito), protocols (Drift, Sanctum Infinity), and network epochs. Integrations documented for Solana Pay, Crossmint, Helius, and Metaplex. Five distinct landing page layouts generated from compact JSON seeds.
+Built exclusively on official Solana sources and real network data. References pools (Jupiter, Raydium, Orca, Meteora DLMM), validators (Jito), protocols (Drift, Sanctum Infinity), and network epochs. Integrations documented for Solana Pay, Crossmint, Helius, and Metaplex.
+
+What sets it apart: **every prompt produces a genuinely new site.** Not a color swap. Not a template pick. A different visual identity — layout, typography, color system, motion, interaction patterns. That's the difference between a template library and a generative skill.
+
+---
 
 ## Real utility first
 
 Real utility first. Web2 UX second. Solana proof layer third. Marketplace automation last. Start with a narrow wedge. Keep purchase UX familiar. Use Solana as a silent proof layer for receipts, provenance, and license hashes. Protect file delivery with standard web infrastructure.
 
+---
+
 ## Hackathon use cases
 
-- **DeFi**: Swap terminal with real Solana token icons, sparklines, slippage, route badges
-- **Prediction**: Markets with category tabs, YES/NO odds, multi-outcome bars, oracle resolution stamps
-- **Music**: Sample licensing with animated wave visualization, genre tags, play buttons
-- **Art**: Magazine editorial with full-bleed cover, feature article, pull quotes, gallery grid
-- **Membership**: Medieval guild with tier cards, ember animations, treasury stats
+- **DeFi**: Swap dashboards with live token pairs, route badges, slippage controls
+- **Prediction**: Market war rooms with oracle feeds, multi-outcome tracking, resolved stamps
+- **Music**: Sample licensing with instant SOL payment, genre tagging, protected delivery
+- **Art**: Magazine editorials with full-bleed covers, feature articles, gallery grids
+- **Membership**: Guild tiers with ember animations, treasury stats, lore-driven onboarding
 
-Complete demo journey: Landing to action to receipt to verification to admin view.
+Complete demo journey: Landing → action → receipt → verification → admin view.
+
+---
 
 ## Safety notes
 
@@ -178,6 +175,8 @@ Complete demo journey: Landing to action to receipt to verification to admin vie
 - Simulate before mainnet. Mainnet Guard blocks unauthorized deploys.
 - Verify supply chain. Use npm_supply_chain_guard.py before installing dependencies.
 - For Solana program audits, use solanabr/Auditor.
+
+---
 
 ## License
 
