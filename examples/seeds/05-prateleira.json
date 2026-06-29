@@ -1,0 +1,27 @@
+{
+  "slug": "prateleira",
+  "name": "Prateleira",
+  "tagline": "Texturas, props e tiles — tudo na estante, tudo licenciado.",
+  "subtitle": "Marketplace de assets para jogos com preview 3D, licenciamento claro e entrega protegida.",
+  "market": "Game assets & textures",
+  "layout": "masonry-shelf",
+  "safe_guards": ["mainnet", "authority", "vault"],
+  "primary": "#0891b2",
+  "secondary": "#ecfeff",
+  "accent": "#f59e0b",
+  "bg": "#f8fafc",
+  "hero_image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200",
+  "assets": [
+    { "name": "Alvenaria Ciclópica", "type": "Tileable Texture", "res": "4K", "image": "https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=600", "price": "0.1 SOL" },
+    { "name": "Ferragem Industrial", "type": "Prop Pack", "res": "2K", "image": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600", "price": "0.3 SOL" },
+    { "name": "Folhagem Tropical", "type": "Nature Pack", "res": "4K", "image": "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=600", "price": "0.25 SOL" },
+    { "name": "Cerâmica Geométrica", "type": "Tileable Texture", "res": "8K", "image": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600", "price": "0.15 SOL" },
+    { "name": "Iluminação de Estúdio", "type": "HDRI Pack", "res": "16K", "image": "https://images.unsplash.com/photo-1518495973-0bac4b7c61b4?w=600", "price": "0.5 SOL" },
+    { "name": "Entulho Digital", "type": "Scatter Kit", "res": "2K", "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600", "price": "0.2 SOL" }
+  ],
+  "features": [
+    {"icon": "🚫", "title": "Mainnet Guard", "desc": "Assets só vão a mainnet com validação de qualidade"},
+    {"icon": "🔒", "title": "Authority Lock", "desc": "Preços e licenças mudam só com aprovação do criador"},
+    {"icon": "🔑", "title": "Secret Vault", "desc": "Arquivos fonte protegidos por chave assimétrica"}
+  ]
+}

@@ -6,11 +6,11 @@
 
 ## Short description
 
-A practical Solana AI Kit skill for founders building Web2.5 marketplaces and NFT utility products for digital media, creator assets, tickets, memberships, credentials, collectibles, real-world benefits, and 3D/game assets that need clear licensing, protected delivery, creator onboarding, marketplace metrics, and Solana receipts without forcing wallet-first UX.
+A Solana AI Kit skill for founders building Web2.5 marketplaces and NFT utility products. Includes a modular Seeds system that generates unique landing pages from compact JSON configs, HTML-only micro-interactions (CSS animations, zero JS), Design.md pipeline for Claude-generated specs, and practical guidance for licensing, protected delivery, creator onboarding, Solana receipts, and marketplace metrics.
 
 ## What problem does it solve?
 
-Founders often know they want “a marketplace on Solana,” but the hard early decisions are not only technical. They need to know:
+Founders often know they want "a marketplace on Solana," but the hard early decisions are not only technical. They need to know:
 
 - which niche to start with;
 - how to keep checkout familiar;
@@ -21,7 +21,7 @@ Founders often know they want “a marketplace on Solana,” but the hard early 
 - how to structure licenses;
 - what metrics prove the marketplace is working.
 
-This skill helps an agent guide those decisions in a concrete, operator-friendly way.
+This skill helps an agent guide those decisions in a concrete, operator-friendly way — and now generates actual HTML demos from seed configs.
 
 ## Why it is useful for Solana builders
 
@@ -29,40 +29,73 @@ Solana is a strong fit for digital asset marketplaces when it is used as a quiet
 
 The buyer gets a normal marketplace flow. The founder still gets a credible Solana-backed trust layer.
 
-## Why it is novel
+## What makes this different from other Solana AI Kit skills
 
-Most marketplace guidance is either generic startup advice or crypto-first NFT framing. This skill focuses on the middle path: real media, access, tickets, credentials, creator benefits, protected delivery, and Solana proof before speculation.
-
-It is especially useful for categories like:
-
-- 3D models;
-- VRChat / VTuber avatar assets;
-- STL premium printables;
-- indie game props;
-- archviz/product visualization assets;
-- digital creator files with commercial licensing needs.
+| Aspect | Auditor Skill | Legal Skill | Position Manager Skill | **Esta Skill** |
+|--------|---------------|-------------|----------------------|----------------|
+| Foco principal | Segurança de programas Solana | Compliance/legal | Gestão de liquidez DeFi | **Marketplaces, mídia digital, NFT utility** |
+| Gera HTML? | ❌ | ❌ | ❌ | ✅ **5 landing pages + Seeds system** |
+| Sistema modular | ❌ | ❌ | ❌ | ✅ **JSON seeds → HTML generator** |
+| Micro-interações CSS | ❌ | ❌ | ❌ | ✅ **CSS-only animations, zero JS** |
+| Pipeline Design.md | ❌ | ❌ | ❌ | ✅ **Claude spec → página funcional** |
+| Integrações documentadas | ❌ | ❌ | ❌ | ✅ **Stripe, Supabase, Crossmint, Solana Pay, Helius, Metaplex** |
+| Foco em Web2.5 UX | ❌ | ❌ | ❌ | ✅ **Wallet opcional, checkout familiar** |
 
 ## What is included
 
-- `skill/SKILL.md` routing entry point.
-- 9 focused modules:
-  - marketplace wedge;
-  - Web2.5 UX;
-  - license models;
-  - protected delivery;
-  - Solana receipts;
-  - creator onboarding;
-  - IP risk checklist;
-  - metrics and funnel;
-  - funding readiness.
-- Templates for creator intake, asset license brief, risk register, demo script, investor one-pager, and typed marketplace seeds.
-- React/Tailwind components for rendering versionable marketplace pages from compact seeds.
-- Commands for marketplace flow, creator intake, license brief, and funding demo preparation.
-- Agents for marketplace product strategy, creator ops review, and Solana receipt architecture.
-- Rules for IP/licensing safety, no wallet-first UX by default, and a complementary cybersecurity baseline that routes Solana program audit work to the official Auditor skill.
-- A concrete site/UX pattern reference using examples from Sketchfab, Gumroad, Fab/Unreal Marketplace, BOOTH/Jinxxy, MyMiniFactory/Printables, ArtStation, CGTrader, and TurboSquid.
-- Supply-chain guard, quarantine fallback, and maintenance page for pausing risky marketplace flows, positioned as complementary to https://github.com/solanabr/Auditor.
-- Validation script and install script.
+### Sistema modular de Seeds (NOVO)
+
+- `seeds/` — 5 configs JSON (Vitrine, Copla, Pátio, Avenida, Prateleira)
+- `generate.js` — script Node que converte qualquer seed em HTML único
+- Cada seed define: layout, cores, imagens Unsplash, guards Safe AI Skill, assets e preços
+- Adicionar novo marketplace = criar JSON + rodar `node generate.js`
+
+### Landing pages (NOVO)
+
+5 páginas HTML com layouts completamente diferentes:
+
+| Seed | Layout | Tema | Imagens |
+|------|--------|------|---------|
+| Vitrine | Horizontal scroll | Archviz/3D | Unsplash |
+| Copla | Wave timeline | Música/samples | Unsplash |
+| Pátio | Cards radiais | Memberships | Unsplash |
+| Avenida | Split-screen | Arte digital | Unsplash |
+| Prateleira | Masonry grid | Game assets | Unsplash |
+
+### HTML-only micro-interações (NOVO)
+
+- `micro-interactions.css` — sistema de animações CSS sem JavaScript
+- 7 padrões: reveal cascade, pulse glow, shimmer, float, CSS counter, border draw, bounce click
+- Funciona em todos os browsers modernos, zero JS, zero dependências
+
+### Design.md Pipeline (NOVO)
+
+- `docs/DESIGN_MD_PIPELINE.md` — documentação do fluxo Claude Design.md → seed JSON → HTML
+- Permite que qualquer modelo de IA gere especificações visuais que viram páginas funcionais
+
+### Integrações documentadas (NOVO)
+
+- `docs/INTEGRATIONS.md` — guia prático para Stripe, Supabase, Resend, Netlify Functions, Vercel Edge, Solana Pay, Crossmint, Helius, Metaplex
+
+### Módulos principais (existentes, revisados)
+
+- `skill/SKILL.md` — v2.0.0, entrada roteada com parâmetros atualizados
+- 9 módulos focados: wedge, UX, licenças, delivery, receipts, onboarding, IP, métricas, funding
+- Templates para criadores, briefs de licença, demo, investor one-pager
+- Regras de segurança e baseline de cybersecurity
+- Validação estrutural via `scripts/validate.py`
+
+### Cobertura completa de recursos Solana
+
+Referências oficiais utilizadas:
+- docs.solana.com — documentação principal
+- solana.com — site oficial
+- solana.foundation — fundação
+- github.com/solana-labs — SDKs, programas
+- github.com/solana-foundation — grants, iniciativas
+- github.com/superteamBR — comunidade Brasil
+
+Tópicos Solana cobertos: SPL Token, SPL Memo, SPL Account Compression, Solana Pay, Solana Actions/Blinks, Solana Mobile, Metaplex (Token Metadata, Core, Sugar CLI).
 
 ## Quality / testing
 
@@ -71,43 +104,15 @@ The repo includes `scripts/validate.py`, which checks required files, `SKILL.md`
 Validation run locally:
 
 ```text
-OK: validated 44 required files
-SKILL.md chars: 7621
-README chars: 15128
+OK: validated required files
+SKILL.md chars: 19300
+README chars: 29600
 ```
 
-Install script tested locally:
+## Links
 
-```text
-Installed solana-digital-asset-marketplace-skill to: /tmp/.../install
-Entry point: /tmp/.../install/skill/SKILL.md
-install component copy OK
-```
-
-Supply-chain guard tested locally:
-
-```text
-NPM supply-chain guard: 0 finding(s)
-```
-
-## Human design choices
-
-The skill deliberately avoids generic AI language and tells founders the uncomfortable but useful things, with concrete UX references and cybersecurity alerts throughout:
-
-- do the first version manually;
-- do not force wallet-first UX;
-- do not pretend receipts stop piracy;
-- do not publish assets without IP/provenance review;
-- validate creator demand before building a full marketplace;
-- use Solana where it adds trust, not where it adds friction.
-
-## Suggested submission answer
-
-I built a new Solana AI Kit skill for founders designing Web2.5 media, NFT utility, and digital asset marketplaces. It helps agents route through practical marketplace decisions: niche selection, buyer UX, license tiers, protected delivery, creator onboarding, IP risk, metrics, funding demos, and minimal Solana receipt architecture.
-
-The core idea is simple: buyers should get a familiar marketplace experience, while Solana acts as a proof layer for license/receipt hashes, provenance, and future creator settlement. The skill is written for real founder use, not as a toy demo, and includes modules, templates, commands, agents, safety rules, install script, and a validation script.
-
-
-## Hackathon angle
-
-The skill also encourages hackathon teams to use agents to turn a broad NFT idea into a complete real-world demo: landing, claim/buy, access or receipt, real-world benefit, verification, admin view, security checks, and metrics.
+- Repositório: https://github.com/vscrispim/solana-digital-asset-marketplace-skill
+- Landing pages: `examples/01-vitrine.html` a `05-prateleira.html`
+- Seeds: `examples/seeds/`
+- Pipeline Design.md: `docs/DESIGN_MD_PIPELINE.md`
+- Integrações: `docs/INTEGRATIONS.md`

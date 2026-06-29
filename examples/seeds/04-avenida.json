@@ -1,0 +1,25 @@
+{
+  "slug": "avenida",
+  "name": "Avenida",
+  "tagline": "Arte digital em camadas — cada obra, um percurso.",
+  "subtitle": "Split-screen que revela a profundidade de cada coleção. Curadoria feita por humanos, protegida por código.",
+  "market": "Digital art & collectibles",
+  "layout": "split-parallax",
+  "safe_guards": ["mainnet", "authority", "account", "vault"],
+  "primary": "#7c3aed",
+  "secondary": "#f5f3ff",
+  "accent": "#ec4899",
+  "bg": "#faf5ff",
+  "hero_image": "https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=1200",
+  "collections": [
+    { "name": "Camadas", "artist": "Fe Nunes", "image": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=600", "items": 24, "floor": "1.2 SOL" },
+    { "name": "Fronteiras", "artist": "Túlio Rosa", "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600", "items": 18, "floor": "0.8 SOL" },
+    { "name": "Entorno", "artist": " Clara Meyer", "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600", "items": 32, "floor": "0.5 SOL" }
+  ],
+  "features": [
+    {"icon": "🚫", "title": "Mainnet Guard", "desc": "Coleções bloqueadas até aprovação de curadoria"},
+    {"icon": "🔒", "title": "Authority Lock", "desc": "Royalties e ownership mudam só com consenso"},
+    {"icon": "🛡️", "title": "Account Shield", "desc": "Burns e closes passam por quarentena de 48h"},
+    {"icon": "🔑", "title": "Secret Vault", "desc": "Chaves de artistas armazenadas offline"}
+  ]
+}

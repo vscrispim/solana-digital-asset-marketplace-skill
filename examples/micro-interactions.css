@@ -1,0 +1,42 @@
+/* ═══════════════════════════════════════════════════════
+   Threed.CC Seeds — HTML-only Micro-interactions System
+   All animations are CSS-only, zero JavaScript.
+   Works on all modern browsers (Chrome, Firefox, Safari, Edge).
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── Reveal on scroll (CSS only: uses animation-delay cascade) ─── */
+.reveal{animation:revealUp .6s cubic-bezier(.34,1.56,.64,1) both}
+.reveal:nth-child(2){animation-delay:.1s}
+.reveal:nth-child(3){animation-delay:.2s}
+.reveal:nth-child(4){animation-delay:.3s}
+.reveal:nth-child(5){animation-delay:.4s}
+.reveal:nth-child(6){animation-delay:.5s}
+.reveal:nth-child(7){animation-delay:.6s}
+.reveal:nth-child(8){animation-delay:.7s}
+@keyframes revealUp{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* ─── Pulse glow for CTAs ─── */
+.pulse-glow{animation:pulseGlow 2.5s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(139,92,246,.2)}50%{box-shadow:0 0 0 12px rgba(139,92,246,0)}}
+
+/* ─── Shimmer loading placeholder ─── */
+.shimmer{background:linear-gradient(90deg,transparent 25%,rgba(255,255,255,.05) 50%,transparent 75%);background-size:200% 100%;animation:shimmer 2s infinite}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+/* ─── Float for decorative elements ─── */
+.float{animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ─── Count-up (CSS counter animation using steps) ─── */
+@keyframes countUp{from{--num:0}to{--num:100}}
+@property --num{syntax:'<integer>';initial-value:0;inherits:false}
+.counter{animation:countUp 2s .3s ease-out both;counter-reset:num var(--num)}
+.counter::after{content:counter(num)}
+
+/* ─── Border draw (hover interaction) ─── */
+.border-draw{position:relative}
+.border-draw::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:currentColor;transition:width .35s ease;border-radius:2px}
+.border-draw:hover::after{width:100%}
+
+/* ─── Scale bounce on click/tap ─── */
+.bounce-click:active{transform:scale(.94);transition-duration:.08s}

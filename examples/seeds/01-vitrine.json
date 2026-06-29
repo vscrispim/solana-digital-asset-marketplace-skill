@@ -1,0 +1,25 @@
+{
+  "slug": "vitrine",
+  "name": "Vitrine",
+  "tagline": "Mostruário curado de ativos 3D para arquitetura e produto.",
+  "subtitle": "Cada peça é protegida por contrato on-chain — sem surpresas no licenciamento.",
+  "market": "Archviz / 3D product assets",
+  "layout": "horizontal-scroll",
+  "safe_guards": ["mainnet", "authority", "vault"],
+  "primary": "#6d28d9",
+  "secondary": "#e0e7ff",
+  "accent": "#f59e0b",
+  "bg": "#0f0b1a",
+  "hero_image": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200",
+  "cards": [
+    { "title": "Poltrona Azul", "image": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600", "price": "0.8 SOL", "creator": "@atelierdigital" },
+    { "title": "Luminária Lunar", "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600", "price": "0.4 SOL", "creator": "@estudioleve" },
+    { "title": "Mesa Orgânica", "image": "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=600", "price": "1.2 SOL", "creator": "@naturaworks" },
+    { "title": "Painel Modular", "image": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=600", "price": "0.6 SOL", "creator": "@construir3d" }
+  ],
+  "features": [
+    {"icon": "🚫", "title": "Mainnet Guard", "desc": "Deploys bloqueados sem multi-sig autorizado"},
+    {"icon": "🔒", "title": "Authority Lock", "desc": "Ownership exige 2-de-3 aprovação"},
+    {"icon": "🔑", "title": "Secret Vault", "desc": "Chaves de creators nunca expostas a agentes"}
+  ]
+}

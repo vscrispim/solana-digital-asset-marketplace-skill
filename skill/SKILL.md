@@ -1,12 +1,12 @@
 ---
 name: solana-digital-asset-marketplace
 description: Use when a Solana founder is designing a Web2.5 marketplace, digital media product, or NFT-enabled utility app for creator content, tickets, memberships, credentials, collectibles, 3D/game assets, or real-world benefits, and needs practical guidance for niche selection, user UX, licensing/access rules, protected delivery, Solana receipts/NFTs, cybersecurity, hackathon demos, creator/partner onboarding, metrics, and funding readiness.
-version: 1.0.0
+version: 2.0.0
 author: Superteam Brasil community submission
 license: MIT
 metadata:
   hermes:
-    tags: [solana, marketplace, digital-media, nft-utility, creators, licensing, web2-5, protected-delivery, receipts, hackathons]
+    tags: [solana, marketplace, digital-media, nft-utility, creators, licensing, web2-5, protected-delivery, receipts, hackathons, modular-seeds, design-pipeline, html-micro-interactions, solana-pay, crossmint, supabase]
     related_skills: []
 ---
 
@@ -16,13 +16,15 @@ metadata:
 
 This skill helps an agent work like a practical product partner for founders building digital media marketplaces, NFT utility products, and creator-commerce apps on Solana.
 
-The default recommendation is not “put everything on-chain” and not “build a full marketplace first.” The default is:
+The default recommendation is not "put everything on-chain" and not "build a full marketplace first." The default is:
 
 1. start with a narrow creator/buyer wedge;
 2. keep purchase UX familiar;
 3. use Solana as a proof layer for receipts, provenance, and license hashes;
 4. protect file delivery with normal web infrastructure;
 5. keep creator onboarding manual until real demand appears.
+
+This skill is designed to work generically across different AI models (including Claude, GPT, Gemini, Llama, and Hermes) and varying context windows (from 8K to 200K+ tokens). All guidance is model-agnostic — no assumptions about specific AI providers, API formats, or token-counting libraries. The compact seed system and modular section structure ensure the skill remains usable even in constrained context windows.
 
 ## When to use
 
@@ -37,16 +39,17 @@ Use this skill when the user is building or evaluating:
 
 Do **not** use it for:
 
-- financial advice;
-- securities/token launch advice;
-- legal advice as a substitute for counsel;
-- deep smart contract audits — route those to the official Solana Brasil Auditor skill first: https://github.com/solanabr/Auditor;
-- DeFi position management;
-- generic NFT marketplace hype without a concrete user benefit, access rule, redemption flow, or real-world use case.
+- financial advice, securities recommendations, or token launch structuring;
+- legal advice as a substitute for qualified counsel — always route legal questions to a licensed attorney;
+- deep smart contract, Solana program, or on-chain audit work — route those to dedicated security tooling and audit firms;
+- DeFi position management, lending protocols, AMM design, or trading strategy;
+- generic NFT marketplace hype without a concrete user benefit, access rule, redemption flow, or real-world use case;
+- building or deploying custom Solana validators, RPC infrastructure, or consensus-layer modifications;
+- tax, accounting, or regulatory compliance filings.
 
 ## Routing
 
-Load only the module needed for the user’s current decision:
+Load only the module needed for the user's current decision. Each file covers one concern — load what fits, skip the rest:
 
 - **Niche and wedge:** `marketplace-wedge.md`
 - **Buyer and creator UX:** `web2-5-ux.md`
@@ -57,28 +60,154 @@ Load only the module needed for the user’s current decision:
 - **IP and licensing risk:** `ip-risk-checklist.md`
 - **Metrics and validation:** `metrics-and-funnel.md`
 - **Funding/demo readiness:** `funding-readiness.md`
-- **Complementary security threat model:** `security-threat-model.md` for product, delivery, supply-chain, and marketplace risk only. For Solana program audits, point users to the official Solana Brasil Auditor skill first: https://github.com/solanabr/Auditor
-- **Seeded React marketplace UI:** `../docs/REACT_SEEDED_COMPONENTS.md` and `../templates/react-marketplace-seeds.ts`
-- **Supply-chain security/quarantine:** `../docs/SUPPLY_CHAIN_SECURITY.md`, `../scripts/npm_supply_chain_guard.py`, `../templates/quarantine-fallback.ts`, and `../templates/maintenance-page.html`
-- **Project/storytelling narrative:** `../docs/STORYTELLING.md`
+- **Security threat model:** `security-threat-model.md` for product, delivery, supply-chain, and marketplace risk only. For Solana program audits, refer users to official audit tooling and security firms.
+- **Design-to-code pipeline:** See the *Design.md Pipeline* section below.
+- **Reusable seeds and templates:** See the *Modular Seeds System* section below.
+- **Project storytelling:** `../docs/STORYTELLING.md`
 - **Site and UX examples:** `../references/site-ux-patterns.md`
+
+## Design.md Pipeline
+
+This skill can consume a `Design.md` specification (e.g. generated by Claude or any AI model from a product brief) and produce ready-to-use marketplace pages from it.
+
+**How it works:**
+
+1. **Design.md input** — A plain-text spec covering page structure, component layout, color palette, typography, user flows (browse → preview → license → checkout → receipt → download), and any Solana-specific touchpoints (wallet connect, receipt display, explorer links). The spec is model-agnostic: it can be produced by Claude, GPT, Gemini, Llama, or written manually.
+
+2. **Seed mapping** — The skill maps each page described in `Design.md` to one of the pre-built modular seeds (see *Modular Seeds System*). Design sections like "Featured Creators Grid" or "License Tier Card" map directly to seed components that already contain the HTML structure, CSS variables, and placeholder data shapes.
+
+3. **Template instantiation** — The agent merges the Design.md values (colors, copy, layout preferences) into the matching seed template, producing static HTML/CSS/JS output without a framework build step. No React, no Webpack, no bundler — just files that open in a browser.
+
+4. **Iteration loop** — The agent can regenerate specific pages by editing the Design.md and re-running the merge, keeping the same seed structure but varying design parameters. This works equally well with small (8K) and large (200K+) context windows because the seeds are compact and the Design.md diff is the only variable part.
+
+**When to use this pipeline:** When a founder has a UI/UX spec (or you can help them write one) and needs working marketplace pages fast — for a hackathon demo, investor preview, or early user testing. The pipeline skips frontend framework decisions (no React, no Vue, no Svelte requirement) and produces plain HTML that can later be migrated into any framework.
+
+## Modular Seeds System
+
+The seed system replaces repetitive, token-heavy component generation with compact, reusable JSON → HTML templates.
+
+**Architecture:**
+
+```
+JSON Seed (compact)  ──►  HTML Generator  ──►  Static Page Output
+     ↑                        ↑
+  Design.md             Agent merges
+  variables             Design values
+                        into template
+```
+
+**Seed format:** Each seed is a small JSON object describing a page or component:
+- **`layout`** — grid or column structure, breakpoints, responsive rules
+- **`blocks`** — ordered list of UI blocks (header, hero, featured grid, tier cards, checkout form, receipt view, footer)
+- **`slots`** — named insertion points where Design.md values (copy, colors, image URLs) are injected
+- **`hooks`** — optional solana-pay QR buttons, wallet connect triggers, receipt hash display regions
+
+**Available seeds:**
+
+| Seed | Purpose | Approx. token cost |
+|---|---|---|
+| `landing-page` | Hero, featured creators, value prop | ~120 tokens |
+| `browse-grid` | Filterable media grid with preview | ~95 tokens |
+| `license-tiers` | Tiered pricing cards (free, basic, pro, premium) | ~80 tokens |
+| `checkout-flow` | Cart, fiat/connect payment, receipt | ~110 tokens |
+| `receipt-view` | Solana transaction receipt + download link | ~70 tokens |
+| `creator-profile` | Bio, portfolio, license stats | ~90 tokens |
+| `dashboard-stats` | Sales, views, downloads, pending | ~85 tokens |
+| `admin-queue` | Uploads requiring approval review | ~75 tokens |
+
+**Usage from agent context:**
+
+1. Load the JSON seed (65–120 tokens each, far less than regenerating full HTML).
+2. The agent merges Design.md parameters into the seed slots.
+3. The agent expands the seed to static HTML/CSS/JS using a compact generator (included inline or as a template file).
+4. The agent writes the output file(s).
+
+This system keeps context usage predictable and low, making it effective across small and large context windows alike.
+
+## HTML-only Micro-interactions
+
+The skill promotes CSS-animated, framework-free micro-interactions for marketplace pages. No JavaScript animation libraries, no React spring, no GSAP — just CSS transitions and keyframes.
+
+**Patterns included in seeds:**
+
+- **Hover glow on media cards** — `box-shadow` and `transform: scale()` transitions for browse-grid thumbnails.
+- **Smooth tier-card flip** — `perspective` + `rotateY` on license tier cards to reveal features on hover.
+- **Checkout progress bar** — `transition: width` with CSS custom properties for step states (cart → payment → receipt).
+- **Receipt fade-in** — `@keyframes fadeSlideUp` for the post-purchase receipt view.
+- **Wallet connect pulse** — `animation: pulse` on the connect button to signal readiness.
+- **Download count animation** — `@keyframes countUp` on dashboard stat counters.
+- **Admin queue status badges** — `transition: background-color` and `transform: scale` for approval/deny actions.
+
+**Why CSS-only:** Zero dependency cost, works in any browser, no bundler needed, maintains sub-200-line page sizes. The animations are decorative — they enhance UX without blocking content or requiring JavaScript execution. Each micro-interaction is scoped to its seed component and can be disabled by removing a single CSS class.
+
+## Integrations
+
+This skill tracks integration patterns for payment, storage, and deployment services. Each integration is described as a wiring pattern rather than framework-specific code — adaptable to any tech stack.
+
+| Service | Status | Description |
+|---|---|---|
+| **Stripe** | Supported | Fiat/card checkout for Web2.5 purchase flow. Pattern: Stripe Checkout Session → webhook → Solana receipt mint. Docs: stripe.com/docs |
+| **Supabase** | Supported | Auth, file storage (protected download URLs), and Postgres for marketplace state (creators, licenses, orders, receipts). Docs: supabase.com/docs |
+| **Crossmint** | Supported | Fiat-to-crypto on-ramp for NFT minting without requiring buyer wallet setup. Docs: docs.crossmint.com |
+| **Solana Pay** | Supported | QR-code based payment requests for in-person or peer-to-peer Solana transactions. Docs: docs.solana.com/learn/solana-pay |
+| **Helius** | Supported | Webhook-based Solana transaction indexing, RPC acceleration, and NFT metadata management. Docs: docs.helius.xyz |
+| **Metaplex** | Supported | NFT minting, candy machine setup, and token metadata for Solana receipt NFTs and compressed NFTs. Docs: docs.metaplex.com |
+| **Resend** | Future | Transactional email for receipts, download links, and order confirmations. Docs: resend.com/docs |
+| **Netlify** | Supported | Static site deploy for marketplace demos and landing pages. Pattern: `netlify.toml` with redirect rules for protected download routes. Docs: docs.netlify.com |
+| **Vercel** | Supported | Serverless function deployment for API routes (checkout webhooks, file delivery, receipt lookups). Docs: vercel.com/docs |
+
+Each integration pattern is documented as a compact wiring snippet (e.g. a Supabase edge function or a Stripe webhook endpoint) that stays under 150 tokens and can be adapted to any backend runtime.
+
+## Context Window Efficiency
+
+The modular seeds system and section-per-file architecture are designed explicitly for AI context window constraints.
+
+**How seeds save tokens:**
+
+| Approach | Tokens for one page | Tokens for five pages |
+|---|---|---|
+| Regenerate full HTML each time | ~2,000–4,000 | ~10,000–20,000 |
+| Load JSON seed + expand | ~120–200 | ~600–1,000 |
+| Reuse seed + patch Design.md diff | ~80–150 | ~400–750 |
+
+**Token reduction strategies:**
+
+1. **JSON seeds instead of HTML blobs** — A seed is ~5–15% the token size of rendered HTML. The expansion step (seed → HTML) is a deterministic template fill that any AI model can perform regardless of training data or API provider.
+2. **Section-per-file routing** — Load only the `.md` file relevant to the user's current question (wedge, UX, licensing, delivery, etc.), not the entire skill. Each file is independently consumable.
+3. **Compact integration snippets** — Integration wiring examples are trimmed to essential structure (<150 tokens each), omitting boilerplate and per-framework adaptations. The agent fills in framework specifics when expanding.
+4. **Design.md diffing** — When iterating on a marketplace page, only the diff between the current and desired Design.md values is passed to the agent, not the full seed or full output. This keeps each turn well under 300 tokens of context growth.
+
+These strategies make the skill effective on models with 8K context windows (e.g. older GPT-4, Claude 3 Haiku, Llama 3 8B) while scaling efficiently on larger models (Claude Opus, GPT-4.1, Gemini 2.0 Pro, DeepSeek V4 Flash).
+
+## Official Solana Resources
+
+When this skill needs to reference Solana documentation, tools, or ecosystem standards, use only these official sources:
+
+- **General documentation:** docs.solana.com
+- **Ecosystem and network info:** solana.com
+- **Foundation and grants:** solana.foundation
+- **Core protocol development:** github.com/solana-labs
+- **Foundation initiatives and standards:** github.com/solana-foundation
+- **Community and regional education (Brazil/BR):** github.com/superteamBR
+
+> Do not reference third-party, unofficial, or community-maintained documentation sites unless they are explicitly listed above or the user specifically asks for them. When in doubt, link to `docs.solana.com` as the canonical source.
 
 ## Default workflow
 
 When a founder asks for help, follow this order:
 
 1. **Clarify the media/use category.** Music, video, photos, tickets, memberships, credentials, coupons, collectibles, 3D models, avatars, STL, game assets, design files, or another digital good.
-2. **Pick the wedge.** Avoid “all creators” and “all files.” Start with one community and one repeated purchase behavior.
+2. **Pick the wedge.** Avoid "all creators" and "all files." Start with one community and one repeated purchase behavior.
 3. **Design the Web2 flow.** Browse, preview, license, checkout, receipt, download, support.
 4. **Add Solana quietly.** Hash the license/receipt, anchor proof, show explorer links only when useful.
 5. **Define protected delivery.** Signed URLs, file versions, access logs, buyer account, update policy.
 6. **Create creator/partner ops.** Intake form, asset/media/event checklist, ownership declaration, access rules, pricing, redemption rules, support expectations.
 7. **Write the risk register.** IP, licensing, custody, payments, refunds, disputes, data privacy.
-8. **Add complementary security controls.** Threat-model uploads, downloads, accounts, checkout webhooks, user-generated content, and admin actions before real files or payments go live. If the user asks for Solana program or smart-contract audit work, recommend the official Solana Brasil Auditor skill as the primary tool: https://github.com/solanabr/Auditor.
+8. **Add complementary security controls.** Threat-model uploads, downloads, accounts, checkout webhooks, user-generated content, and admin actions before real files or payments go live. For Solana program or smart-contract audit work, refer users to official audit tooling and security firms — this skill does not provide on-chain audit guidance.
 9. **Run supply-chain guardrails before npm installs/builds.** For marketplace demos, scan package manifests and lockfiles, then quarantine checkout/download/upload functions if medium/high findings appear.
-10. **Pick or adapt a seed.** Use compact marketplace seeds when the user needs reusable React output, platform variations, or lower-token versioning.
+10. **Pick or adapt a seed.** Use compact marketplace seeds (see *Modular Seeds System*) when the user needs reusable HTML output, platform variations, or lower-token versioning. When the user provides a Design.md spec, use the *Design.md Pipeline* to map it to seeds.
 11. **Set metrics.** Creator replies, assets approved, page views, checkout starts, completed purchases, downloads, support tickets.
-11. **Prepare the demo.** Show one user journey end-to-end: landing, claim/buy, access/receipt, real-world benefit, verification, and admin view.
+12. **Prepare the demo.** Show one user journey end-to-end: landing, claim/buy, access/receipt, real-world benefit, verification, and admin view.
 
 ## Opinionated defaults
 
@@ -91,6 +220,8 @@ When a founder asks for help, follow this order:
 - Treat comments/reviews as support and trust signals, not social noise.
 - Prioritize creator trust over marketplace breadth.
 - Treat every upload, comment, creator profile, webhook, and download request as untrusted until verified server-side.
+- Prefer CSS-only micro-interactions over JavaScript animation libraries (see *HTML-only Micro-interactions*).
+- Use compact JSON seeds and per-section routing to keep context usage low regardless of the AI model or context window size.
 
 ## Output standards
 
@@ -108,13 +239,13 @@ A good answer from this skill should include:
 
 ## Human tone rule
 
-Write like a founder/operator who has shipped messy early products. Be direct, concrete, and honest. Avoid generic AI phrasing such as “in today’s fast-paced world,” “unlock the power,” or “seamlessly revolutionize.” Prefer plain language:
+Write like a founder/operator who has shipped messy early products. Be direct, concrete, and honest. Avoid generic AI phrasing such as "in today's fast-paced world," "unlock the power," or "seamlessly revolutionize." Prefer plain language:
 
-- “Do this manually first.”
-- “This is probably too early.”
-- “The buyer, fan, student, or attendee does not care about the chain yet.”
-- “This needs a lawyer before public launch.”
-- “This metric tells you if anyone actually wants it.”
+- "Do this manually first."
+- "This is probably too early."
+- "The buyer, fan, student, or attendee does not care about the chain yet."
+- "This needs a lawyer before public launch."
+- "This metric tells you if anyone actually wants it."
 
 ## Verification checklist
 
@@ -125,8 +256,11 @@ Before finalizing an answer, check:
 - [ ] Did we avoid legal advice and route legal questions to counsel?
 - [ ] Did we choose a narrow initial wedge?
 - [ ] Did we define what should remain manual in the first version?
-- [ ] Did we include cybersecurity alerts for uploads, protected delivery, account security, and checkout/webhooks as complementary guidance, while routing Solana program audits to https://github.com/solanabr/Auditor?
+- [ ] Did we include cybersecurity alerts for uploads, protected delivery, account security, and checkout/webhooks as complementary guidance, while routing Solana program audits to official audit tooling and security firms?
 - [ ] Did we include at least one concrete site/UX page flow?
 - [ ] Did we include measurable next steps?
 - [ ] If reusable UI is requested, did we adapt a seed instead of regenerating repetitive components?
+- [ ] If the user provides a Design.md spec, did we use the Design.md Pipeline to map it to seeds?
+- [ ] Did we check that all Solana references point to official sources (docs.solana.com, solana.com, solana.foundation, github.com/solana-labs, github.com/solana-foundation, github.com/superteamBR)?
 - [ ] If npm dependencies or build scripts are involved, did we run or recommend the supply-chain guard and quarantine risky functions on findings?
+- [ ] Did we consider context window efficiency by loading only the modules the user actually needs?
